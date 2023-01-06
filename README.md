@@ -15,8 +15,8 @@
 
 ### Prerequisites
 
-- 최신 버전의 Yarn이 설치되어 있어야 합니다.
-- [`serve`](https://github.com/vercel/serve) 패키지가 설치되어 있어야 합니다.
+- 최신 버전의 `yarn`이 설치되어 있어야 합니다.
+- 전역에 [`serve`](https://github.com/vercel/serve) 패키지가 설치되어 있어야 합니다.
 
 ### 개발환경 실행
 
