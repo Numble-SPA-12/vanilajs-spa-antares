@@ -5,8 +5,8 @@
   "scripts": {
     "watch-compile-css": "npx tailwindcss -i ./src/styles/input.css -o ./src/styles/output.css --watch",
     "dev-server": "serve -s ./dist",
-    "dev": "yarn dev-server & yarn watch-compile-css",
-    "build": "webpack"
+    "dev": "webpack serve --mode development --open",
+    "build": "webpack --mode production"
   },
   "dependencies": {
     "axios": "^1.2.2",
@@ -17,6 +17,7 @@
     "html-webpack-plugin": "^5.5.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
   }
 }

@@ -1,7 +1,7 @@
 const path = require("path");
 const htmlWebpackPlugin = require("html-webpack-plugin");
 
-module.exports = {
+const defaultConfig = {
   entry: "./src/index.js",
   plugins: [
     new htmlWebpackPlugin({
@@ -21,4 +21,20 @@ module.exports = {
       },
     ],
   },
+};
+
+module.exports = (env, argv) => {
+  let config = defaultConfig;
+
+  if (env === "development") {
+    config = {
+      ...defaultConfig,
+      devtool: "inline-source-map",
+      optimization: {
+        runtimeChunck: "single",
+      },
+    };
+  }
+
+  return config;
 };
