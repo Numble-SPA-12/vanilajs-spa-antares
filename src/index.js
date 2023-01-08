@@ -1,8 +1,8 @@
-import "./styles/output.css";
+import "./styles/input.css";
 
-import { initializeRouter } from "./router/router.js";
+import { initializeRouter } from "./router/router";
 
-import Header from "./components/header.js";
+import Header from "./components/header";
 
 customElements.define("app-header", Header);
 
