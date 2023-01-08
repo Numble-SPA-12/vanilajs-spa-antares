@@ -1,1 +1,3 @@
-export { default } from "./header.js";
+import Header from "./Header";
+
+export { Header };
