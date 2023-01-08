@@ -1,6 +1,7 @@
-import "./components/header.js";
+import { initializeRouter } from "./router/router.js";
 
-// import "./pages/Home.js";
-// import "./pages/NotFound.js";
+import Header from "./components/header.js";
 
-import "./components/router.js";
+customElements.define("app-header", Header);
+
+initializeRouter();

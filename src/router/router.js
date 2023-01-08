@@ -1,3 +1,5 @@
+"use strict";
+
 import Home from "../pages/Home.js";
 import NotFound from "../pages/NotFound.js";
 
@@ -30,17 +32,19 @@ const render = async (path) => {
   }
 };
 
-const navigateTo = async (path) => {
+export const navigateTo = async (path) => {
   if (window.location.pathname === path) return;
 
   window.history.pushState(null, null, path);
   render(path);
 };
 
-window.addEventListener("popstate", () => {
-  render();
-});
+export const initializeRouter = () => {
+  window.addEventListener("popstate", () => {
+    render();
+  });
 
-window.addEventListener("DOMContentLoaded", () => {
-  render();
-});
+  window.addEventListener("DOMContentLoaded", () => {
+    render();
+  });
+};
