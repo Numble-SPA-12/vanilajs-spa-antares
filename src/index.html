@@ -12,20 +12,7 @@
     <title>HPNY 2023 | Numble VanilaJS Challenge</title>
   </head>
   <body>
-    <div id="app">
-      <app-header type="sub"></app-header>
-      <button id="change-header-type">click</button>
-    </div>
+    <div id="app"></div>
     <script type="module" src="./index.js"></script>
-    <script>
-      const changeHeaderBtn = document.querySelector("#change-header-type");
-
-      changeHeaderBtn.addEventListener("click", () => {
-        const appHeader = document.querySelector("app-header");
-        appHeader.getAttribute("type") === "main"
-          ? appHeader.setAttribute("type", "sub")
-          : appHeader.setAttribute("type", "main");
-      });
-    </script>
   </body>
 </html>

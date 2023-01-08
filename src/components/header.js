@@ -1,3 +1,5 @@
+"use strict";
+
 class Header extends HTMLElement {
   constructor() {
     super();
@@ -68,4 +70,6 @@ class Header extends HTMLElement {
   }
 }
 
-customElements.define("app-header", Header);
+export default Header;
+
+// customElements.define("app-header", Header);
