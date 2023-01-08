@@ -1,7 +1,6 @@
 "use strict";
 
-import Home from "../pages/Home.js";
-import NotFound from "../pages/NotFound.js";
+import { Home, NotFound, NewPost } from "pages";
 
 const $appRoot = document.getElementById("app");
 
@@ -10,10 +9,10 @@ const routes = [
     path: "/",
     component: Home,
   },
-  // {
-  //   path: "/new",
-  //   component: NewPostPage,
-  // },
+  {
+    path: "/new",
+    component: NewPost,
+  },
   // {
   //   path: "/post",
   //   component: PostPage,

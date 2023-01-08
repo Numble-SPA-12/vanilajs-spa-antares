@@ -13,6 +13,9 @@ const defaultConfig = {
     path: path.resolve(__dirname, "dist"),
     clean: true,
   },
+  resolve: {
+    modules: [path.resolve(__dirname, "src"), "node_modules"],
+  },
   module: {
     rules: [
       {
