@@ -7,7 +7,6 @@ import PostArticle from "components/PostArticle";
 import CommentList from "components/CommentList";
 
 const Post = () => {
-  // @TODO : Comment 없을 때 처리
   // @TODO : Comment Form 처리
 
   const pageString = `
