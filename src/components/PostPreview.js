@@ -14,7 +14,7 @@ const PostPreview = ({
         <img src="${image.escape()}" class="h-full w-full object-cover aspect-[100/100]" loading="lazy" />
       </section>
       <section class="flex flex-1 flex-col justify-between px-3 py-4 gap-2 overflow-hidden">
-        <h2 class="text-lg font-bold">${title.escape()}</h2>
+        <h2 class="text-lg font-bold max-w-full overflow-hidden text-ellipsis whitespace-nowrap">${title.escape()}</h2>
         <p class="text-sm text-gray-500 max-w-full overflow-hidden text-ellipsis whitespace-nowrap">${content.escape()}</p>
       </section>
     </article>
