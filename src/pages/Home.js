@@ -49,6 +49,7 @@ const Home = () => {
   $main.innerHTML = `
     <app-header type="main"></app-header>
     <main class="flex-1 px-4 pt-4">
+      <button id="newyear-post__newpost-link" class="w-full py-2 rounded-lg bg-red-600 text-white font-semibold text-lg mb-4 shadow-md">New Post</button>
       <ul id="newyear-post__list" class="flex flex-col gap-4">
         ${data.map((post) => PostPreview(post).outerHTML).join("")}
       </ul>
@@ -62,6 +63,12 @@ const Home = () => {
       router.push(`/posts/${id}`);
     }
   });
+
+  $main
+    .querySelector("#newyear-post__newpost-link")
+    .addEventListener("click", (e) => {
+      router.push("/posts/new");
+    });
 
   return $main;
 };
