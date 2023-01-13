@@ -21,7 +21,7 @@ const NewPost = () => {
             <hr class="w-full" ></hr>
             <textarea
               placeholder="Your Post Content Here..."
-              class="w-full text-black whitespace-pre-wrap flex-1 placeholder:text-gray-500 focus:outline-none"
+              class="w-full text-black whitespace-pre-wrap flex-1 placeholder:text-gray-500 focus:outline-none resize-none"
             ></textarea>
           </section>
           <button class="py-4 w-full bg-black text-white text-lg font-semibold rounded-md" >

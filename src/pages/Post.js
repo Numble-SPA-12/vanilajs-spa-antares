@@ -16,11 +16,11 @@ const Post = () => {
             <img src="https://picsum.photos/id/1/360/265" class="h-full w-full object-cover aspect-[360/265]" />
           </section>
           <section id="post__content" class="px-4 pt-4 flex flex-1 flex-col gap-4">
-            <div id="post__content__meta flex flex-col gap-2" >
-              <h2 id="post__content__title" class="text-2xl font-semibold">제목</h2>
-              <time datetime="2023-01-08" class="text-xs text-gray-500" >2023-01-08</time>
+            <div id="post__content__meta" class="flex flex-col gap-2" >
+              <h2 id="post__content__title" class="text-2xl font-bold">제목</h2>
+              <time datetime="2023-01-08" class="text-sm text-gray-500" >2023-01-08</time>
             </div>
-            <p class="text-sm text-gray-900" >
+            <p class="text-gray-900" >
               lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
               lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
               lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
@@ -44,9 +44,9 @@ const Post = () => {
                   <li class="flex flex-col gap-2 pl-4 pt-2 pb-4 border-b border-gray-200 last:border-none">
                     <div class="flex items-center gap-2">
                       <img src="https://picsum.photos/id/1/360/265" class="h-8 w-8 rounded-full object-cover" />
-                      <span class="text-sm font-semibold">username</span>
+                      <span class=" font-semibold">username</span>
                     </div>
-                    <p class="text-sm text-gray-500" >
+                    <p class="" >
                       lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
                     </p>
                   </li>
@@ -56,7 +56,7 @@ const Post = () => {
           </ul>
           <form id="post__comments__form" class="">
             <textarea name="comment" id="comment" cols="30" rows="3" class="w-full resize-none text-sm border border-gray-300 rounded-md p-2"></textarea>
-            <button type="submit" class="w-20 mt-2 bg-blue-500 text-white rounded-md py-2">Submit</button>
+            <button type="submit" class="w-20 mt-2 bg-black text-white rounded-md py-2">Submit</button>
           </form>
         </aside>
       </main>
