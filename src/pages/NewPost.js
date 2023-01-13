@@ -10,8 +10,8 @@ const NewPost = () => {
       <app-header type="sub"></app-header>
       <main class="flex-1 flex flex-col bg-gray-50">
         <form id="post__form" class="flex-1 px-4 py-6 w-full flex flex-col gap-4">
-          <section id="post__form__image" class="h-40 w-full bg-white rounded-md border border-gray-300 flex justify-center items-center">
-            <h3 class="text-gray-500 text-lg" >Upload Image</h3>
+          <section id="post__form__image" class="h-56 w-full bg-white rounded-md border border-gray-300 flex justify-center items-center">
+            <button type="button" class="text-gray-500 text-lg font-semibold">Upload Image</button>
           </section>
           <section id="post__form__article" class="w-full min-h-[300px] bg-white rounded-md border border-gray-300 flex-1 flex flex-col justify-start items-start gap-4 p-8">
             <input 
@@ -44,17 +44,29 @@ const NewPost = () => {
   });
 
   const $form = $page.querySelector("#post__form");
+
+  const $image = $page.querySelector("#post__form__image");
+
+  // TODO: image upload
+  $image.addEventListener("click", () => {
+    $image.replaceChildren(
+      parseElementFromString(`
+        <img src="https://images.unsplash.com/photo-1671224352372-6a40361be66f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzOTg3NzV8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzM2MzcwMDk&ixlib=rb-4.0.3&q=80&w=1080" class="h-full w-full object-cover aspect-[1080/720]" />
+      `)
+    );
+  });
+
   $form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const $title = $form.querySelector("input");
     const $content = $form.querySelector("textarea");
-    // TODO: image upload
-    const imageUrl =
-      "https://images.unsplash.com/photo-1671224352372-6a40361be66f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzOTg3NzV8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzM2MzcwMDk&ixlib=rb-4.0.3&q=80&w=1080";
+    const $image = $form.querySelector("img");
+
     const post = {
       title: $title.value,
       content: $content.value,
-      image: imageUrl,
+      // TODO: image upload
+      image: $image ? $image.src : "",
     };
 
     try {
