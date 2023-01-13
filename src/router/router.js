@@ -64,6 +64,14 @@ class Router {
     try {
       const dissolvedPath = _path.split("/");
 
+      /**
+       * @TODO
+       * :id 이용하는 라우트랑 /new 처럼 정해진 라우트에 둘다 해당하는 경우를 체크하고
+       * 이에 대한 처리를 해줘야 합니다.
+       *
+       * 지금은 /new가 /:id 보다 먼저 정의되어 있어서 /new가 먼저 체크되어서
+       * /new가 렌더링 되는데, 이를 해결해야 합니다.
+       */
       const matchingRoute = Object.entries(this.routes).find(([routePath]) => {
         const routePathParts = routePath.split("/");
         if (routePathParts.length !== dissolvedPath.length) return false;
