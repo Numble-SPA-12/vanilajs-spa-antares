@@ -19,7 +19,7 @@ const Post = () => {
           <h2 id="post__comments__title" class="text-lg font-semibold">Comments</h2>
           ${CommentList.Loading()}
           <form id="post__comments__form" class="">
-            <textarea name="comment" id="comment" cols="30" rows="3" class="w-full resize-none text-sm border border-gray-300 rounded-md p-2"></textarea>
+            <textarea name="comment" placeholder="Write a comment..."  cols="30" rows="3" class="w-full resize-none text-sm border border-gray-300 rounded-md p-2"></textarea>
             <button type="submit" class="w-20 mt-2 bg-black text-white rounded-md py-2">Submit</button>
           </form>
         </aside>
@@ -49,7 +49,6 @@ const Post = () => {
         "#post__comments__title"
       ).textContent = `Comments (${data.comments.length})`;
 
-      console.log(data.comments);
       $page
         .querySelector("#post__comments__list")
         .replaceWith(

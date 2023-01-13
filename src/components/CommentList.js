@@ -4,6 +4,10 @@ const CommentList = ({ data }) => {
   const componentString = `
     <ul id="post__comments__list" class="flex flex-col gap-2">
       ${data.map(Comment).join("")}
+      ${
+        data.length === 0 &&
+        `<p class="text-center text-gray-600">No comments yet</p>`
+      }
     </ul>
   `;
 
