@@ -5,6 +5,12 @@ import { Home, NotFound, NewPost, Post } from "pages";
 class Router {
   constructor() {
     this.$appRoot = document.getElementById("app");
+
+    // bind the event handlers to the instance
+    this.init = this.init.bind(this);
+    this.back = this.back.bind(this);
+    this.push = this.push.bind(this);
+    this.replace = this.replace.bind(this);
   }
 
   /**
@@ -33,7 +39,7 @@ class Router {
    * @param {string} currentPath
    * @param {string} matchingPath
    */
-  async setPathInfo(currentPath, matchingPath) {
+  async #setPathInfo(currentPath, matchingPath) {
     const dissolvedPath = currentPath.split("/");
 
     if (matchingPath) {
@@ -58,7 +64,7 @@ class Router {
 
   $appRoot;
 
-  async render(path) {
+  async #render(path) {
     const _path = path ?? window.location.pathname;
 
     try {
@@ -85,7 +91,7 @@ class Router {
       const matchingPath = matchingRoute?.[0];
       const matchingPage = matchingRoute?.[1];
 
-      this.setPathInfo(_path, matchingPath);
+      this.#setPathInfo(_path, matchingPath);
 
       const page = matchingPage ?? NotFound;
       this.$appRoot.replaceChildren(await page());
@@ -95,13 +101,13 @@ class Router {
   }
 
   init() {
-    this.render();
+    this.#render();
     window.addEventListener("popstate", () => {
-      this.render();
+      this.#render();
     });
 
     window.addEventListener("DOMContentLoaded", () => {
-      this.render();
+      this.#render();
     });
   }
 
@@ -111,12 +117,12 @@ class Router {
 
   push(path) {
     window.history.pushState({}, "", path);
-    this.render(path);
+    this.#render(path);
   }
 
   replace(path) {
     window.history.replaceState({}, "", path);
-    this.render(path);
+    this.#render(path);
   }
 
   query() {
