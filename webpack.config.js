@@ -12,6 +12,10 @@ const defaultConfig = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
+    publicPath: "/",
+  },
+  devServer: {
+    historyApiFallback: true,
   },
   resolve: {
     modules: [path.resolve(__dirname, "src"), "node_modules"],
