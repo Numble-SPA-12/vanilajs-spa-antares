@@ -20,7 +20,7 @@ class Header extends HTMLElement {
               <h1 class="font-bold text-xl">HPNY 2023</h1>
               <div class="flex-1"></div>
           </header>
-          <div class="h-14 w-full"></div>
+          <div class="h-14 w-full bg-gray-50"></div>
         `;
         break;
       case "sub":
@@ -32,7 +32,7 @@ class Header extends HTMLElement {
               <h1 class="font-bold text-xl">HPNY 2023</h1>
               <div class="flex-1"></div>
           </header>
-          <div class="h-14 w-full"></div>
+          <div class="h-14 w-full bg-gray-50"></div>
         `;
         break;
     }
