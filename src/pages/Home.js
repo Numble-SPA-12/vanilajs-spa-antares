@@ -39,6 +39,27 @@ const data = [
       "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
     imgSrc: "https://picsum.photos/id/5/100/100",
   },
+  {
+    id: 6,
+    title: "제목",
+    content:
+      "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    imgSrc: "https://picsum.photos/id/6/100/100",
+  },
+  {
+    id: 7,
+    title: "제목",
+    content:
+      "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    imgSrc: "https://picsum.photos/id/7/100/100",
+  },
+  {
+    id: 8,
+    title: "제목",
+    content:
+      "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    imgSrc: "https://picsum.photos/id/8/100/100",
+  },
 ];
 
 const Home = () => {
@@ -48,8 +69,8 @@ const Home = () => {
 
   $main.innerHTML = `
     <app-header type="main"></app-header>
-    <main class="flex-1 px-4 pt-4">
-      <button id="newyear-post__newpost-link" class="w-full py-2 rounded-lg bg-red-600 text-white font-semibold text-lg mb-4 shadow-md">New Post</button>
+    <main class="flex-1 px-4 pt-4 bg-gray-50">
+      <button id="newyear-post__newpost-link" class="w-full py-3 rounded-lg bg-blue-400 text-white font-semibold text-lg mb-4">New Post</button>
       <ul id="newyear-post__list" class="flex flex-col gap-4">
         ${data.map((post) => PostPreview(post).outerHTML).join("")}
       </ul>

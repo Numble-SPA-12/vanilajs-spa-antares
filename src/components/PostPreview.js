@@ -2,7 +2,7 @@ import parseElementFromString from "utils/parseElementFromString";
 
 const PostPreview = ({ id, title = "제목", content = "내용", imgSrc = "" }) => {
   const componentString = `
-    <article id="newyear-post-${id}" data-post-id="${id}" class="flex rounded-md shadow-md overflow-hidden cursor-pointer">
+    <article id="newyear-post-${id}" data-post-id="${id}" class="flex rounded-md border bg-white border-gray-300 overflow-hidden cursor-pointer">
       <section class="shrink-0 w-30 h-30">
         <img src="${imgSrc}" loading="lazy" />
       </section>

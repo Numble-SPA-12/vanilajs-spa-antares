@@ -16,7 +16,7 @@ class Header extends HTMLElement {
     switch (headerType) {
       case "main":
         el.innerHTML = `
-          <header class="flex fixed bg-white top-0 items-center justify-start w-full gap-2 px-4 border-b border-gray-500 h-14">
+          <header class="flex fixed bg-white top-0 items-center justify-start w-full gap-2 px-4 border-b border-gray-200 h-14">
               <h1 class="font-bold text-xl">HPNY 2023</h1>
               <div class="flex-1"></div>
           </header>
@@ -25,7 +25,7 @@ class Header extends HTMLElement {
         break;
       case "sub":
         el.innerHTML = `
-          <header class="flex fixed bg-white top-0 items-center justify-start w-full gap-2 px-4 border-b border-gray-500 h-14">
+          <header class="flex fixed bg-white top-0 items-center justify-start w-full gap-2 px-4 border-b border-gray-200 h-14">
               <button id="back-button" class="w-10 h-10">
                 <i class="bi bi-chevron-left text-lg"></i>
               </button>
