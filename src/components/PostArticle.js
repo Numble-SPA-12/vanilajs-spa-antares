@@ -34,7 +34,7 @@ const PostArticle = ({
 
 const PostArticleSkeleton = () => {
   const componentString = `
-    <article class="flex flex-col border-b border-gray-400">
+    <article id="post-article" class="flex flex-col border-b border-gray-400">
       <section id="post__image" class="w-full h-64 bg-gray-200 animate-pulse">
       </section>
       <section id="post__content" class="px-4 pt-4 flex flex-1 flex-col gap-4">
