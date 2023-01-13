@@ -41,7 +41,6 @@ const Home = async () => {
     const $list = $page.querySelector("#newyear-post__list");
     const result = await getPosts();
     if (result.code === 200) {
-      console.log(result.data);
       $list.innerHTML = result.data.posts
         .map((post) => PostPreview(post))
         .join("");

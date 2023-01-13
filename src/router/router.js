@@ -40,7 +40,7 @@ class Router {
    * @param {string} currentPath
    * @param {string} matchingPath
    */
-  async #setPathInfo(currentPath, matchingPath) {
+  #setPathInfo(currentPath, matchingPath) {
     const dissolvedPath = currentPath.split("/");
 
     if (matchingPath) {
@@ -95,6 +95,7 @@ class Router {
       this.#setPathInfo(_path, matchingPath);
 
       const page = matchingPage ?? NotFound;
+
       this.$appRoot.replaceChildren(await page());
     } catch (err) {
       console.log(err);
