@@ -2,6 +2,7 @@
 
 import parseElementFromString from "utils/parseElementFromString";
 import router from "router";
+import { createPost } from "apis/PostsAPI";
 
 const NewPost = () => {
   const pageString = `
@@ -24,7 +25,7 @@ const NewPost = () => {
               class="w-full text-black whitespace-pre-wrap flex-1 placeholder:text-gray-500 focus:outline-none resize-none"
             ></textarea>
           </section>
-          <button class="py-4 w-full bg-black text-white text-lg font-semibold rounded-md" >
+          <button type="submit" class="py-4 w-full bg-black text-white text-lg font-semibold rounded-md" >
             Submit
           </button>
         </form>
@@ -39,6 +40,33 @@ const NewPost = () => {
     const $target = e.target.closest("button");
     if ($target && $target.id === "back-button") {
       router.back();
+    }
+  });
+
+  const $form = $page.querySelector("#post__form");
+  $form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const $title = $form.querySelector("input");
+    const $content = $form.querySelector("textarea");
+    // TODO: image upload
+    const imageUrl =
+      "https://images.unsplash.com/photo-1671224352372-6a40361be66f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzOTg3NzV8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzM2MzcwMDk&ixlib=rb-4.0.3&q=80&w=1080";
+    const post = {
+      title: $title.value,
+      content: $content.value,
+      image: imageUrl,
+    };
+
+    try {
+      const responseData = await createPost(post);
+      if (responseData.code === 201) {
+        router.push(`/posts/${responseData.data.postId}`);
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      $title.value = "";
+      $content.value = "";
     }
   });
 
