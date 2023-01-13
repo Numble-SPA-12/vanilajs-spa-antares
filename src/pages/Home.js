@@ -1,68 +1,10 @@
 "use strict";
 
+import { getPosts } from "apis/PostsAPI";
 import { PostPreview } from "components";
 import router from "router";
 
-const data = [
-  {
-    id: 1,
-    title: "제목",
-    content:
-      "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-    imgSrc: "https://picsum.photos/id/1/100/100",
-  },
-  {
-    id: 2,
-    title: "제목",
-    content:
-      "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-    imgSrc: "https://picsum.photos/id/2/100/100",
-  },
-  {
-    id: 3,
-    title: "제목",
-    content:
-      "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-    imgSrc: "https://picsum.photos/id/3/100/100",
-  },
-  {
-    id: 4,
-    title: "제목",
-    content:
-      "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-    imgSrc: "https://picsum.photos/id/4/100/100",
-  },
-  {
-    id: 5,
-    title: "제목",
-    content:
-      "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-    imgSrc: "https://picsum.photos/id/5/100/100",
-  },
-  {
-    id: 6,
-    title: "제목",
-    content:
-      "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-    imgSrc: "https://picsum.photos/id/6/100/100",
-  },
-  {
-    id: 7,
-    title: "제목",
-    content:
-      "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-    imgSrc: "https://picsum.photos/id/7/100/100",
-  },
-  {
-    id: 8,
-    title: "제목",
-    content:
-      "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-    imgSrc: "https://picsum.photos/id/8/100/100",
-  },
-];
-
-const Home = () => {
+const Home = async () => {
   const $main = document.createElement("div");
 
   $main.classList.add("flex", "flex-col", "justify-start", "min-h-screen");
@@ -73,7 +15,9 @@ const Home = () => {
       <button id="newyear-post__newpost-link" class="w-full py-3 rounded-lg bg-black text-white font-semibold text-lg mb-4">New Post</button>
       <ul id="newyear-post__list" class="flex flex-col gap-4">
         ${PostPreview.Loading().outerHTML}
-        ${data.map((post) => PostPreview(post).outerHTML).join("")}
+        ${PostPreview.Loading().outerHTML}
+        ${PostPreview.Loading().outerHTML}
+        ${PostPreview.Loading().outerHTML}
       </ul>
     </main>
   `;
@@ -91,6 +35,17 @@ const Home = () => {
     .addEventListener("click", (e) => {
       router.push("/posts/new");
     });
+
+  (async () => {
+    const $list = $main.querySelector("#newyear-post__list");
+    const result = await getPosts();
+    if (result.code === 200) {
+      console.log(result.data);
+      $list.innerHTML = result.data.posts
+        .map((post) => PostPreview(post).outerHTML)
+        .join("");
+    }
+  })();
 
   return $main;
 };
