@@ -44,7 +44,7 @@ const data = [
 const Home = () => {
   const $main = document.createElement("div");
 
-  $main.classList.add(["flex", "flex-col", "justify-start", "min-h-screen"]);
+  $main.classList.add("flex", "flex-col", "justify-start", "min-h-screen");
 
   $main.innerHTML = `
     <app-header type="main"></app-header>
