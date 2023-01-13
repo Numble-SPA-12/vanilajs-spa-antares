@@ -17,6 +17,7 @@ class Router {
    * @type {Object} - key-value pairs of routes
    */
   routes = {
+    "/": Home,
     "/posts": Home,
     "/posts/new": NewPost,
     "/posts/:postId": Post,
