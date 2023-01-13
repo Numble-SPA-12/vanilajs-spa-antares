@@ -1,6 +1,7 @@
 "use strict";
 
 import parseElementFromString from "utils/parseElementFromString";
+import router from "router";
 
 const NewPost = () => {
   const pageString = `
@@ -11,7 +12,7 @@ const NewPost = () => {
           <section id="post__form__image" class="h-40 w-full bg-white rounded-md border border-gray-300 flex justify-center items-center">
             <h3 class="text-gray-500 text-lg" >Upload Image</h3>
           </section>
-          <section id="post__form__article" class="w-full min-h-32 bg-white rounded-md border border-gray-300 flex-1 flex flex-col justify-start items-start gap-4 p-8">
+          <section id="post__form__article" class="w-full min-h-[300px] bg-white rounded-md border border-gray-300 flex-1 flex flex-col justify-start items-start gap-4 p-8">
             <input 
               type="text" 
               placeholder="Your Post Title Here..." 
@@ -34,6 +35,7 @@ const NewPost = () => {
   const $page = parseElementFromString(pageString);
 
   $page.querySelector("app-header").addEventListener("click", (e) => {
+    console.log("click");
     const $target = e.target.closest("button");
     if ($target && $target.id === "back-button") {
       router.back();
