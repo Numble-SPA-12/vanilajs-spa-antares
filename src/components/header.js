@@ -16,7 +16,7 @@ class Header extends HTMLElement {
     switch (headerType) {
       case "main":
         el.innerHTML = `
-          <header class="flex fixed bg-white top-0 items-center justify-start w-full gap-2 px-4 border-b border-gray-200 h-14">
+          <header class="flex fixed z-20 bg-white top-0 items-center justify-start w-full gap-2 px-4 border-b border-gray-200 h-14">
               <h1 class="font-bold text-xl">HPNY 2023</h1>
               <div class="flex-1"></div>
           </header>
@@ -25,7 +25,7 @@ class Header extends HTMLElement {
         break;
       case "sub":
         el.innerHTML = `
-          <header class="flex fixed bg-white top-0 items-center justify-start w-full gap-2 px-4 border-b border-gray-200 h-14">
+          <header class="flex fixed z-20 bg-white top-0 items-center justify-start w-full gap-2 px-4 border-b border-gray-200 h-14">
               <button id="back-button" class="w-10 h-10">
                 <i class="bi bi-chevron-left text-lg"></i>
               </button>
@@ -36,27 +36,6 @@ class Header extends HTMLElement {
         `;
         break;
     }
-  }
-
-  /**
-   * 이 컴포넌트가 DOM에 추가될 때 호출됩니다.
-   */
-  connectedCallback() {
-    this.render(this);
-  }
-
-  /**
-   * 이 컴포넌트가 DOM에서 제거될 때 호출됩니다.
-   */
-  disconnectedCallback() {
-    console.log("disconnected");
-  }
-
-  /**
-   * 이 컴포넌트가 다른 DOM에 추가될 때 호출됩니다.
-   */
-  adoptedCallback() {
-    console.log("adopted");
   }
 
   /**
@@ -71,5 +50,3 @@ class Header extends HTMLElement {
 }
 
 export default Header;
-
-// customElements.define("app-header", Header);
