@@ -118,6 +118,18 @@ class Router {
     window.history.replaceState({}, "", path);
     this.render(path);
   }
+
+  query() {
+    return this.currentPathInfo.search;
+  }
+
+  params() {
+    return this.currentPathInfo.params;
+  }
+
+  path() {
+    return this.currentPathInfo.path;
+  }
 }
 
 const router = new Router();
