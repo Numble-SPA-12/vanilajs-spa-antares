@@ -12,13 +12,16 @@ const NewPost = () => {
             <h3 class="text-gray-500 text-lg" >Upload Image</h3>
           </section>
           <section id="post__form__article" class="w-full min-h-32 bg-white rounded-md border border-gray-300 flex-1 flex flex-col justify-start items-start gap-4 p-8">
-            <h3 class="text-gray-600 text-2xl font-bold">Your Post Title Here...</h3>
+            <input 
+              type="text" 
+              placeholder="Your Post Title Here..." 
+              class="w-full text-2xl font-bold text-black placeholder:text-gray-600 placeholder:text-2xl placeholder:font-bold focus:outline-none"  
+            />
             <hr class="w-full" ></hr>
-            <p class="text-gray-500" >
-                lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
-                lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
-                lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
-            </p>
+            <textarea
+              placeholder="Your Post Content Here..."
+              class="w-full text-black whitespace-pre-wrap flex-1 placeholder:text-gray-500 focus:outline-none"
+            ></textarea>
           </section>
           <button class="py-4 w-full bg-black text-white text-lg font-semibold rounded-md" >
             Submit
