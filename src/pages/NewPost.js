@@ -12,7 +12,10 @@ const NewPost = () => {
       <main class="flex-1 flex flex-col bg-gray-50">
         <form id="post__form" class="flex-1 px-4 py-6 w-full flex flex-col gap-4">
           <section id="post__form__image" class="h-56 w-full bg-white rounded-md border border-gray-300 flex justify-center items-center overflow-hidden">
-            <button type="button" class="text-gray-500 text-lg font-semibold">Upload Image</button>
+            <button type="button" class="text-gray-500 text-lg font-semibold flex gap-2">
+              <i class="bi bi-image" ></i>
+              <span>Upload Image</span>
+            </button>
           </section>
           <section id="post__form__article" class="w-full min-h-[300px] bg-white rounded-md border border-gray-300 flex-1 flex flex-col justify-start items-start gap-4 p-8">
             <input 
