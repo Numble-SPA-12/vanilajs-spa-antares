@@ -13,10 +13,10 @@ const Post = () => {
     <div class="min-h-screen flex flex-col">
       <app-header type="sub"></app-header>
       <main id="post-container" class="flex-1 flex flex-col">
-        ${PostArticle.Loading()}
+        ${PostArticle.Loading}
         <aside id="post__comments" class="p-4 flex flex-col gap-4">
           <h2 id="post__comments__title" class="text-lg font-semibold">Comments</h2>
-          ${CommentList.Loading()}
+          ${CommentList.Loading}
           ${CommentUploader()}
         </aside>
       </main>
@@ -54,7 +54,7 @@ const Post = () => {
     });
   };
 
-  const setArticleEvent = () => {
+  const setArticleEvent = (postData) => {
     const $article = $page.querySelector("#post-article");
     $article.addEventListener("click", async (e) => {
       const $target = e.target.closest("button");
@@ -71,6 +71,8 @@ const Post = () => {
             alert(err.response.data.message);
           }
         }
+      } else if ($target && $target.id === "post__actions__edit") {
+        $article.replaceWith(PostArticle.Edit(postData));
       }
     });
   };
@@ -82,7 +84,7 @@ const Post = () => {
         .querySelector("#post-article")
         .replaceWith(parseElementFromString(PostArticle(data.post)));
 
-      setArticleEvent();
+      setArticleEvent(data.post);
 
       document.querySelector(
         "#post__comments__title"
