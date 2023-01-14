@@ -23,8 +23,8 @@ const PostArticle = ({
         <p class="text-gray-900 whitespace-pre-line break-words">${content.escape()}</p>
       </section>
       <section id="post__actions" class="flex gap-2 justify-end w-full px-4 py-4" >
-        <button class="w-14 py-0.5 rounded-sm text-sm hover:bg-gray-200 text-gray-600">Edit</button>
-        <button class="w-14 py-0.5 rounded-sm text-sm hover:bg-gray-200 text-gray-600">Delete</button>
+        <button id="" data-action="edit" class="w-14 py-0.5 rounded-sm text-sm hover:bg-gray-200 text-gray-600">Edit</button>
+        <button id="post__actions__delete" data-action="delete" class="w-14 py-0.5 rounded-sm text-sm hover:bg-gray-200 text-gray-600">Delete</button>
       </section>
     </article>
   `;
