@@ -1,5 +1,6 @@
 const path = require("path");
 const htmlWebpackPlugin = require("html-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 const defaultConfig = {
   entry: "./src/index.js",
@@ -7,6 +8,7 @@ const defaultConfig = {
     new htmlWebpackPlugin({
       template: "./src/index.html",
     }),
+    new Dotenv(),
   ],
   output: {
     filename: "bundle.js",

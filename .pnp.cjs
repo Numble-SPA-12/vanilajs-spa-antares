@@ -31,6 +31,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["autoprefixer", "virtual:5fed70d46b8e6753dbde90653587d1cfdbab66d46627565532b883f1d02d3501ec12e8791ce179baf8fa86b625aab0da37da8ce70a9fe7c7894532e21680ad6b#npm:10.4.13"],\
             ["axios", "npm:1.2.2"],\
             ["css-loader", "virtual:5fed70d46b8e6753dbde90653587d1cfdbab66d46627565532b883f1d02d3501ec12e8791ce179baf8fa86b625aab0da37da8ce70a9fe7c7894532e21680ad6b#npm:6.7.3"],\
+            ["dotenv-webpack", "virtual:5fed70d46b8e6753dbde90653587d1cfdbab66d46627565532b883f1d02d3501ec12e8791ce179baf8fa86b625aab0da37da8ce70a9fe7c7894532e21680ad6b#npm:8.0.1"],\
             ["html-webpack-plugin", "virtual:5fed70d46b8e6753dbde90653587d1cfdbab66d46627565532b883f1d02d3501ec12e8791ce179baf8fa86b625aab0da37da8ce70a9fe7c7894532e21680ad6b#npm:5.5.0"],\
             ["postcss", "npm:8.4.21"],\
             ["postcss-loader", "virtual:5fed70d46b8e6753dbde90653587d1cfdbab66d46627565532b883f1d02d3501ec12e8791ce179baf8fa86b625aab0da37da8ce70a9fe7c7894532e21680ad6b#npm:7.0.2"],\
@@ -1845,6 +1846,48 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["dot-case", "npm:3.0.4"],\
             ["no-case", "npm:3.0.4"],\
             ["tslib", "npm:2.4.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["dotenv", [\
+        ["npm:8.6.0", {\
+          "packageLocation": "./.yarn/cache/dotenv-npm-8.6.0-2ce3e9f7bb-38e902c80b.zip/node_modules/dotenv/",\
+          "packageDependencies": [\
+            ["dotenv", "npm:8.6.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["dotenv-defaults", [\
+        ["npm:2.0.2", {\
+          "packageLocation": "./.yarn/cache/dotenv-defaults-npm-2.0.2-436a76242a-c005960bd0.zip/node_modules/dotenv-defaults/",\
+          "packageDependencies": [\
+            ["dotenv-defaults", "npm:2.0.2"],\
+            ["dotenv", "npm:8.6.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["dotenv-webpack", [\
+        ["npm:8.0.1", {\
+          "packageLocation": "./.yarn/cache/dotenv-webpack-npm-8.0.1-36e1a1f481-ee73eda78d.zip/node_modules/dotenv-webpack/",\
+          "packageDependencies": [\
+            ["dotenv-webpack", "npm:8.0.1"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:5fed70d46b8e6753dbde90653587d1cfdbab66d46627565532b883f1d02d3501ec12e8791ce179baf8fa86b625aab0da37da8ce70a9fe7c7894532e21680ad6b#npm:8.0.1", {\
+          "packageLocation": "./.yarn/__virtual__/dotenv-webpack-virtual-738d25b5e3/0/cache/dotenv-webpack-npm-8.0.1-36e1a1f481-ee73eda78d.zip/node_modules/dotenv-webpack/",\
+          "packageDependencies": [\
+            ["dotenv-webpack", "virtual:5fed70d46b8e6753dbde90653587d1cfdbab66d46627565532b883f1d02d3501ec12e8791ce179baf8fa86b625aab0da37da8ce70a9fe7c7894532e21680ad6b#npm:8.0.1"],\
+            ["@types/webpack", null],\
+            ["dotenv-defaults", "npm:2.0.2"],\
+            ["webpack", "virtual:5fed70d46b8e6753dbde90653587d1cfdbab66d46627565532b883f1d02d3501ec12e8791ce179baf8fa86b625aab0da37da8ce70a9fe7c7894532e21680ad6b#npm:5.75.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/webpack",\
+            "webpack"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -5111,6 +5154,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["autoprefixer", "virtual:5fed70d46b8e6753dbde90653587d1cfdbab66d46627565532b883f1d02d3501ec12e8791ce179baf8fa86b625aab0da37da8ce70a9fe7c7894532e21680ad6b#npm:10.4.13"],\
             ["axios", "npm:1.2.2"],\
             ["css-loader", "virtual:5fed70d46b8e6753dbde90653587d1cfdbab66d46627565532b883f1d02d3501ec12e8791ce179baf8fa86b625aab0da37da8ce70a9fe7c7894532e21680ad6b#npm:6.7.3"],\
+            ["dotenv-webpack", "virtual:5fed70d46b8e6753dbde90653587d1cfdbab66d46627565532b883f1d02d3501ec12e8791ce179baf8fa86b625aab0da37da8ce70a9fe7c7894532e21680ad6b#npm:8.0.1"],\
             ["html-webpack-plugin", "virtual:5fed70d46b8e6753dbde90653587d1cfdbab66d46627565532b883f1d02d3501ec12e8791ce179baf8fa86b625aab0da37da8ce70a9fe7c7894532e21680ad6b#npm:5.5.0"],\
             ["postcss", "npm:8.4.21"],\
             ["postcss-loader", "virtual:5fed70d46b8e6753dbde90653587d1cfdbab66d46627565532b883f1d02d3501ec12e8791ce179baf8fa86b625aab0da37da8ce70a9fe7c7894532e21680ad6b#npm:7.0.2"],\
