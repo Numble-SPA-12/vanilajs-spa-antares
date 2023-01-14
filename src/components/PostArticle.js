@@ -16,15 +16,15 @@ const PostArticle = ({
       <section id="post__content" class="px-4 pt-4 flex flex-1 flex-col gap-4">
         <div id="post__content__meta" class="flex flex-col gap-2" >
           <h2 id="post__content__title" class="text-2xl font-bold">${title.escape()}</h2>
-          <time datetime="2023-01-08" class="text-sm text-gray-500" >${parseDateTime(
-            createdAt
-          )}</time>
+          <time datetime="${createdAt}" class="text-sm text-gray-500" >${parseDateTime(
+    createdAt
+  )}</time>
         </div>
         <p class="text-gray-900 whitespace-pre-line break-words">${content.escape()}</p>
       </section>
       <section id="post__actions" class="flex gap-2 justify-end w-full px-4 py-4" >
-        <button class="w-14 py-0.5 rounded-sm text-sm hover:bg-gray-200 text-gray-600">Edit</button>
-        <button class="w-14 py-0.5 rounded-sm text-sm hover:bg-gray-200 text-gray-600">Delete</button>
+        <button id="" data-action="edit" class="w-14 py-0.5 rounded-sm text-sm hover:bg-gray-200 text-gray-600">Edit</button>
+        <button id="post__actions__delete" data-action="delete" class="w-14 py-0.5 rounded-sm text-sm hover:bg-gray-200 text-gray-600">Delete</button>
       </section>
     </article>
   `;

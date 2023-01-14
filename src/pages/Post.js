@@ -2,11 +2,11 @@
 
 import parseElementFromString from "utils/parseElementFromString";
 import router from "router";
-import { getPostById } from "apis/PostsAPI";
+import { getPostById, deletePost } from "apis/PostsAPI";
 import PostArticle from "components/PostArticle";
 import CommentList from "components/CommentList";
 import CommentUploader from "components/CommentUploader";
-import { createComment } from "apis/CommentsAPI";
+import { createComment, deleteComment } from "apis/CommentsAPI";
 
 const Post = () => {
   const pageString = `
@@ -34,12 +34,55 @@ const Post = () => {
 
   const { postId } = router.params();
 
+  const setCommentEvent = () => {
+    const $commentList = $page.querySelector("#post__comments__list");
+    $commentList.addEventListener("click", async (e) => {
+      const $target = e.target.closest("button");
+      if ($target && $target.dataset.commentId) {
+        try {
+          const { code } = await deleteComment($target.dataset.commentId);
+          if (code === 200) {
+            fetchPostAndComment();
+          }
+        } catch (err) {
+          console.error(err);
+          if (err.response.status === 400) {
+            alert(err.response.data.message);
+          }
+        }
+      }
+    });
+  };
+
+  const setArticleEvent = () => {
+    const $article = $page.querySelector("#post-article");
+    $article.addEventListener("click", async (e) => {
+      const $target = e.target.closest("button");
+      if ($target && $target.id === "post__actions__delete") {
+        if (!confirm("정말 삭제하시겠습니까?")) return;
+        try {
+          const { code } = await deletePost(postId);
+          if (code === 200) {
+            router.push("/");
+          }
+        } catch (err) {
+          console.error(err);
+          if (err.response.status === 400) {
+            alert(err.response.data.message);
+          }
+        }
+      }
+    });
+  };
+
   const fetchPostAndComment = async () => {
     const { data, success } = await getPostById(postId);
     if (success) {
       document
         .querySelector("#post-article")
         .replaceWith(parseElementFromString(PostArticle(data.post)));
+
+      setArticleEvent();
 
       document.querySelector(
         "#post__comments__title"
@@ -50,8 +93,12 @@ const Post = () => {
         .replaceWith(
           parseElementFromString(CommentList({ data: data.comments }))
         );
+
+      setCommentEvent();
     }
   };
+
+  fetchPostAndComment();
 
   const $form = $page.querySelector("#post__comments__form");
   $form.addEventListener("submit", async (e) => {
@@ -72,8 +119,6 @@ const Post = () => {
       }
     }
   });
-
-  fetchPostAndComment();
 
   return $page;
 };
