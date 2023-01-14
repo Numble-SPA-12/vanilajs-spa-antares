@@ -3,6 +3,7 @@
 import parseElementFromString from "utils/parseElementFromString";
 import router from "router";
 import { createPost } from "apis/PostsAPI";
+import { getRandomPhoto } from "apis/UnsplashAPI";
 
 const NewPost = () => {
   const pageString = `
@@ -48,10 +49,12 @@ const NewPost = () => {
   const $image = $page.querySelector("#post__form__image");
 
   // TODO: image upload
-  $image.addEventListener("click", () => {
+  $image.addEventListener("click", async () => {
+    const data = await getRandomPhoto();
+
     $image.replaceChildren(
       parseElementFromString(`
-        <img src="https://images.unsplash.com/photo-1671224352372-6a40361be66f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzOTg3NzV8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzM2MzcwMDk&ixlib=rb-4.0.3&q=80&w=1080" class="h-full w-full object-cover aspect-[1080/720]" />
+        <img src="${data.urls.full}" class="h-full w-full object-cover aspect-[1080/720]" />
       `)
     );
   });
