@@ -31,6 +31,6 @@ const CommentListSkeleton = () => {
   return componentString;
 };
 
-CommentList.Loading = CommentListSkeleton;
+CommentList.Loading = CommentListSkeleton();
 
 export default CommentList;
