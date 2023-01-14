@@ -9,7 +9,7 @@ const PostArticle = ({
   updatedAt,
 }) => {
   const componentString = `
-    <article class="flex flex-col border-b border-gray-400">
+    <article id="post-article" class="flex flex-col border-b border-gray-400">
       <section id="post__image" class="w-full">
         <img src="${image.escape()}" class="h-full w-full object-cover aspect-[360/265]" />
       </section>

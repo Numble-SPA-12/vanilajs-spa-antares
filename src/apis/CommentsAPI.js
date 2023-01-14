@@ -1,7 +1,9 @@
 import { axiosInstance } from "./axiosInstance.js";
 
 export const createComment = async (postId, comment) => {
-  const { data } = await axiosInstance.post(`/comment/${postId}`, comment);
+  const { data } = await axiosInstance.post(`/comment/${postId}`, {
+    content: comment,
+  });
   return data;
 };
 

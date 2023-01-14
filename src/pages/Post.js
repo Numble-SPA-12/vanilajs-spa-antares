@@ -5,10 +5,10 @@ import router from "router";
 import { getPostById } from "apis/PostsAPI";
 import PostArticle from "components/PostArticle";
 import CommentList from "components/CommentList";
+import CommentUploader from "components/CommentUploader";
+import { createComment } from "apis/CommentsAPI";
 
 const Post = () => {
-  // @TODO : Comment Form 처리
-
   const pageString = `
     <div class="min-h-screen flex flex-col">
       <app-header type="sub"></app-header>
@@ -17,10 +17,7 @@ const Post = () => {
         <aside id="post__comments" class="p-4 flex flex-col gap-4">
           <h2 id="post__comments__title" class="text-lg font-semibold">Comments</h2>
           ${CommentList.Loading()}
-          <form id="post__comments__form" class="">
-            <textarea name="comment" placeholder="Write a comment..."  cols="30" rows="3" class="w-full resize-none text-sm border border-gray-300 rounded-md p-2"></textarea>
-            <button type="submit" class="w-20 mt-2 bg-black text-white rounded-md py-2">Submit</button>
-          </form>
+          ${CommentUploader()}
         </aside>
       </main>
     </div> 
@@ -37,24 +34,46 @@ const Post = () => {
 
   const { postId } = router.params();
 
-  (async () => {
+  const fetchPostAndComment = async () => {
     const { data, success } = await getPostById(postId);
     if (success) {
-      $page
+      document
         .querySelector("#post-article")
         .replaceWith(parseElementFromString(PostArticle(data.post)));
 
-      $page.querySelector(
+      document.querySelector(
         "#post__comments__title"
       ).textContent = `Comments (${data.comments.length})`;
 
-      $page
+      document
         .querySelector("#post__comments__list")
         .replaceWith(
           parseElementFromString(CommentList({ data: data.comments }))
         );
     }
-  })();
+  };
+
+  const $form = $page.querySelector("#post__comments__form");
+  $form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const $textarea = $form.querySelector("textarea");
+    const comment = $textarea.value.trim();
+    if (!comment) return;
+
+    try {
+      const responseData = await createComment(postId, comment);
+      if (responseData.code === 201) {
+        $textarea.value = "";
+        fetchPostAndComment();
+      }
+    } catch (err) {
+      if (err.response.status === 400) {
+        alert(err.response.data.message);
+      }
+    }
+  });
+
+  fetchPostAndComment();
 
   return $page;
 };
