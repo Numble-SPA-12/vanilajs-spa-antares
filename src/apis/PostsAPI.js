@@ -16,7 +16,7 @@ export const createPost = async (post) => {
 };
 
 export const updatePost = async (id, post) => {
-  const { data } = await axiosInstance.put(`/post/${id}`, post);
+  const { data } = await axiosInstance.patch(`/post/${id}`, post);
   return data;
 };
 

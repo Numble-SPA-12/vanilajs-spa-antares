@@ -127,6 +127,10 @@ class Router {
     this.#render(path);
   }
 
+  reload() {
+    this.#render();
+  }
+
   query() {
     return this.currentPathInfo.search;
   }
