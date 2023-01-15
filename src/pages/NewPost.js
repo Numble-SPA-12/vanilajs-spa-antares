@@ -5,8 +5,50 @@ import router from "router";
 import { createPost } from "apis/PostsAPI";
 import { getRandomPhoto } from "apis/UnsplashAPI";
 
+const headerClickHandler = (e) => {
+  const $target = e.target.closest("button");
+  if ($target && $target.id === "back-button") {
+    router.back();
+  }
+};
+
+const imageUploaderClickHandler = async (e) => {
+  const data = await getRandomPhoto();
+
+  $image.replaceChildren(
+    parseElementFromString(`
+        <img src="${data.urls.full}" class="h-full w-full object-cover aspect-[1080/720]" />
+      `)
+  );
+};
+
+const formSubmitHandler = async (e) => {
+  e.preventDefault();
+  const $title = $form.querySelector("input");
+  const $content = $form.querySelector("textarea");
+  const $image = $form.querySelector("img");
+
+  const post = {
+    title: $title.value,
+    content: $content.value,
+    image: $image ? $image.src : "",
+  };
+
+  try {
+    const responseData = await createPost(post);
+    if (responseData.code === 201) {
+      router.push(`/posts/${responseData.data.postId}`);
+    }
+  } catch (err) {
+    console.log(err);
+  } finally {
+    $title.value = "";
+    $content.value = "";
+  }
+};
+
 const NewPost = () => {
-  const pageString = `
+  const pageTemplateString = `
     <div class="min-h-screen flex flex-col">
       <app-header type="sub"></app-header>
       <main class="flex-1 flex flex-col bg-gray-50">
@@ -37,58 +79,26 @@ const NewPost = () => {
     </div> 
   `;
 
-  const $page = parseElementFromString(pageString);
+  let state = {};
 
-  $page.querySelector("app-header").addEventListener("click", (e) => {
-    console.log("click");
-    const $target = e.target.closest("button");
-    if ($target && $target.id === "back-button") {
-      router.back();
-    }
-  });
+  const setEventListeners = ($page) => {
+    $page
+      .querySelector("app-header")
+      .addEventListener("click", headerClickHandler);
+    const $form = $page.querySelector("#post__form");
+    const $image = $page.querySelector("#post__form__image");
+    $image.addEventListener("click", imageUploaderClickHandler);
+    $form.addEventListener("submit", formSubmitHandler);
+  };
 
-  const $form = $page.querySelector("#post__form");
+  const render = () => {
+    const $app = document.querySelector("#app");
+    const $page = parseElementFromString(pageTemplateString);
+    setEventListeners($page);
+    $app.replaceChildren($page);
+  };
 
-  const $image = $page.querySelector("#post__form__image");
-
-  // TODO: image upload
-  $image.addEventListener("click", async () => {
-    const data = await getRandomPhoto();
-
-    $image.replaceChildren(
-      parseElementFromString(`
-        <img src="${data.urls.full}" class="h-full w-full object-cover aspect-[1080/720]" />
-      `)
-    );
-  });
-
-  $form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const $title = $form.querySelector("input");
-    const $content = $form.querySelector("textarea");
-    const $image = $form.querySelector("img");
-
-    const post = {
-      title: $title.value,
-      content: $content.value,
-      // TODO: image upload
-      image: $image ? $image.src : "",
-    };
-
-    try {
-      const responseData = await createPost(post);
-      if (responseData.code === 201) {
-        router.push(`/posts/${responseData.data.postId}`);
-      }
-    } catch (err) {
-      console.log(err);
-    } finally {
-      $title.value = "";
-      $content.value = "";
-    }
-  });
-
-  return $page;
+  render();
 };
 
 export default NewPost;
