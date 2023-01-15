@@ -1,7 +1,8 @@
 import "./styles/input.css";
 
 import { Header } from "./components";
-import router from "router";
+import Router from "router";
+import { Home, NewPost, Post } from "pages";
 
 customElements.define("app-header", Header);
 
@@ -17,5 +18,14 @@ String.prototype.escape = function () {
     return tagsToReplace[tag] || tag;
   });
 };
+
+const routes = {
+  "/": Home,
+  "/posts": Home,
+  "/posts/new": NewPost,
+  "/posts/:postId": Post,
+};
+
+const router = new Router(routes);
 
 router.init();

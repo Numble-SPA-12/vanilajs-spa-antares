@@ -1,3 +1,5 @@
+import parseElementFromString from "utils/parseElementFromString";
+
 const PostPreview = ({
   postId,
   title = "제목",
@@ -18,7 +20,9 @@ const PostPreview = ({
     </article>
   `;
 
-  return componentString;
+  const component = parseElementFromString(componentString);
+
+  return component;
 };
 
 const LoadingPostPreview = () => {
@@ -35,9 +39,11 @@ const LoadingPostPreview = () => {
     </article>
   `;
 
-  return componentString;
+  const component = parseElementFromString(componentString);
+
+  return component;
 };
 
-PostPreview.Loading = LoadingPostPreview;
+PostPreview.Loading = LoadingPostPreview();
 
 export default PostPreview;
