@@ -33,7 +33,8 @@ const CommentList = (comments, setState) => {
           setState((prevState) => ({
             ...prevState,
             comments: prevState.comments.filter(
-              (comment) => comment.commentId !== $target.dataset.commentId
+              (comment) =>
+                comment.commentId.toString() !== $target.dataset.commentId
             ),
           }));
         }
