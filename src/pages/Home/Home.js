@@ -1,9 +1,7 @@
 "use strict";
 
-import PostPreview from "./components/PostPreview";
 import parseElementFromString from "common/utils/parseElementFromString";
 import template from "./constants/template";
-import setEventListeners from "./utils/setEventListeners";
 import fetchPosts from "./utils/fetchPosts";
 import PostList from "./components/PostList";
 
@@ -34,7 +32,7 @@ const Home = async () => {
       $listPlaceholder.replaceChildren(PostList(state.posts));
     }
 
-    setEventListeners($page);
+    // setEventListeners($page);
     $app.replaceChildren($page);
   };
 

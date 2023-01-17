@@ -1,4 +1,6 @@
-const { default: PostPreview } = require("./PostPreview");
+import PostPreview from "./PostPreview";
+import router from "common/router";
+import Links from "common/constants/Links";
 
 const postClickHandler = (e) => {
   const $target = e.target.closest("article");
@@ -17,6 +19,11 @@ const PostList = (posts) => {
   $list.append(...postPreviews);
 
   $list.addEventListener("click", postClickHandler);
+  $list.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+      postClickHandler(e);
+    }
+  });
 
   return $list;
 };

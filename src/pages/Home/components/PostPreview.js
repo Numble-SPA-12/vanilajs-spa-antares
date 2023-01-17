@@ -9,7 +9,7 @@ const PostPreview = ({
   updatedAt = "",
 }) => {
   const componentString = `
-    <article id="newyear-post-${postId}" data-post-id="${postId}" class="flex rounded-md border bg-white border-gray-300 overflow-hidden cursor-pointer">
+    <article tabindex="0" id="newyear-post-${postId}" data-post-id="${postId}" class="flex rounded-md border bg-white border-gray-300 overflow-hidden cursor-pointer">
       <section class="shrink-0 w-[100px] h-[100px]">
         <img src="${image.escape()}" class="h-full w-full object-cover aspect-[100/100]" loading="lazy" />
       </section>
