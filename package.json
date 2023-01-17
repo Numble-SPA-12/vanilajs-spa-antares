@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "webpack serve --mode development --open",
-    "build": "webpack --mode production",
-    "start": "serve dist"
+    "build": "webpack --mode production"
   },
   "dependencies": {
     "axios": "^1.2.2"

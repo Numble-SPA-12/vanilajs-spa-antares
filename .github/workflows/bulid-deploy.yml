@@ -1,10 +1,11 @@
 name: NodeJS with Webpack
 
-on:
-  push:
-    branches: ["master"]
-  pull_request:
-    branches: ["master"]
+# 빌드 설정 문제때매 주석처리
+# on:
+#   push:
+#     branches: ["master"]
+#   pull_request:
+#     branches: ["master"]
 
 env:
   AWS_REGION: ap-northeast-2
