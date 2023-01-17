@@ -5,6 +5,7 @@ import parseElementFromString from "common/utils/parseElementFromString";
 import template from "./constants/template";
 import setEventListeners from "./utils/setEventListeners";
 import fetchPosts from "./utils/fetchPosts";
+import PostList from "./components/PostList";
 
 const Home = async () => {
   let state = {
@@ -24,18 +25,14 @@ const Home = async () => {
     const $app = document.querySelector("#app");
     const $page = parseElementFromString(template);
 
-    const $list = $page.querySelector("#newyear-post__list");
-    const $fragment = document.createDocumentFragment();
-
+    const $listPlaceholder = $page.querySelector(
+      "#newyear-post__list__placeholder"
+    );
     if (state.isLoading) {
-      Array.from({ length: 3 }).forEach((_, i) =>
-        $fragment.append(PostPreview.Loading())
-      );
+      $listPlaceholder.replaceChildren(PostList.Loading());
     } else {
-      const postPreviews = state.posts.map((post) => PostPreview(post));
-      $fragment.append(...postPreviews);
+      $listPlaceholder.replaceChildren(PostList(state.posts));
     }
-    $list.append($fragment);
 
     setEventListeners($page);
     $app.replaceChildren($page);
