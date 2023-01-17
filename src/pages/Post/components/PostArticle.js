@@ -1,8 +1,8 @@
-import { updatePost } from "apis/PostsAPI";
-import { getRandomPhoto } from "apis/UnsplashAPI";
-import router from "router";
-import parseDateTime from "utils/parseDateTime";
-import parseElementFromString from "utils/parseElementFromString";
+import { updatePost } from "common/apis/PostsAPI";
+import { getRandomPhoto } from "common/apis/UnsplashAPI";
+import router from "common/router";
+import parseDateTime from "common/utils/parseDateTime";
+import parseElementFromString from "common/utils/parseElementFromString";
 
 const PostArticle = ({
   title,

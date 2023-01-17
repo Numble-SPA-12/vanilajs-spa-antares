@@ -1,6 +1,6 @@
-import Home from "./Home";
-import NewPost from "./NewPost";
+import Home from "./Home/Home";
+import NewPost from "./NewPost/NewPost";
 import NotFound from "./NotFound";
-import Post from "./Post";
+import Post from "./Post/Post";
 
 export { Home, NewPost, NotFound, Post };

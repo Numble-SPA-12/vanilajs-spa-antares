@@ -1,16 +1,10 @@
 "use strict";
 
-import parseElementFromString from "utils/parseElementFromString";
-import router from "router";
-import { createPost } from "apis/PostsAPI";
-import { getRandomPhoto } from "apis/UnsplashAPI";
-
-const headerClickHandler = (e) => {
-  const $target = e.target.closest("button");
-  if ($target && $target.id === "back-button") {
-    router.back();
-  }
-};
+import parseElementFromString from "common/utils/parseElementFromString";
+import router from "common/router";
+import { createPost } from "common/apis/PostsAPI";
+import { getRandomPhoto } from "common/apis/UnsplashAPI";
+import { headerClickHandler } from "common/components/Header";
 
 const imageUploaderClickHandler = async (e) => {
   const data = await getRandomPhoto();

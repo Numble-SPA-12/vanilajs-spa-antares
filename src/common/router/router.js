@@ -3,8 +3,7 @@
 import { NotFound } from "pages";
 
 class Router {
-  constructor(routes) {
-    this.routes = routes;
+  constructor() {
     // bind the event handlers to the instance
     this.init = this.init.bind(this);
     this.back = this.back.bind(this);
@@ -12,7 +11,7 @@ class Router {
     this.replace = this.replace.bind(this);
   }
 
-  routes;
+  routes = {};
 
   /**
    * @type {Object}
@@ -91,7 +90,9 @@ class Router {
     }
   }
 
-  init() {
+  init({ routes }) {
+    this.routes = routes;
+
     this.#render();
     window.addEventListener("popstate", () => {
       this.#render();
@@ -132,4 +133,6 @@ class Router {
   }
 }
 
-export default Router;
+const router = new Router();
+
+export default router;

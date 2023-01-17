@@ -1,12 +1,57 @@
 "use strict";
 
-import parseElementFromString from "utils/parseElementFromString";
-import router from "router";
-import { getPostById, deletePost } from "apis/PostsAPI";
+import parseElementFromString from "common/utils/parseElementFromString";
+import router from "common/router";
+import { getPostById, deletePost } from "common/apis/PostsAPI";
 import PostArticle from "components/PostArticle";
 import CommentList from "components/CommentList";
 import CommentUploader from "components/CommentUploader";
-import { createComment, deleteComment } from "apis/CommentsAPI";
+import { createComment, deleteComment } from "common/apis/CommentsAPI";
+
+const headerClickHandler = (e) => {
+  const $target = e.target.closest("button");
+  if ($target && $target.id === "back-button") {
+    router.back();
+  }
+};
+
+const commentDeleteHandler = async (e) => {
+  const $target = e.target.closest("button");
+  if ($target && $target.dataset.commentId) {
+    try {
+      const { code } = await deleteComment($target.dataset.commentId);
+      if (code === 200) {
+        fetchPostAndComment();
+      }
+    } catch (err) {
+      console.error(err);
+      if (err.response.status === 400) {
+        alert(err.response.data.message);
+      }
+    }
+  }
+};
+
+const formSubmitHandler = async (e) => {
+  e.preventDefault();
+  const $textarea = $form.querySelector("textarea");
+  const comment = $textarea.value.trim();
+  if (!comment) return;
+
+  const { postId } = router.params();
+
+  try {
+    const responseData = await createComment(postId, comment);
+    if (responseData.code === 201) {
+      $textarea.value = "";
+      fetchPostAndComment();
+    }
+  } catch (err) {
+    if (err.response.status === 400) {
+      alert(err.response.data.message);
+    }
+  }
+};
 
 const Post = () => {
   const pageString = `
@@ -23,41 +68,22 @@ const Post = () => {
     </div> 
   `;
 
-  const $page = parseElementFromString(pageString);
-
-  $page.querySelector("app-header").addEventListener("click", (e) => {
-    const $target = e.target.closest("button");
-    if ($target && $target.id === "back-button") {
-      router.back();
-    }
-  });
+  let state = {
+    post: null,
+    comments: null,
+    mode: "view",
+  };
 
   const { postId } = router.params();
 
   const setCommentEvent = () => {
     const $commentList = $page.querySelector("#post__comments__list");
-    $commentList.addEventListener("click", async (e) => {
-      const $target = e.target.closest("button");
-      if ($target && $target.dataset.commentId) {
-        try {
-          const { code } = await deleteComment($target.dataset.commentId);
-          if (code === 200) {
-            fetchPostAndComment();
-          }
-        } catch (err) {
-          console.error(err);
-          if (err.response.status === 400) {
-            alert(err.response.data.message);
-          }
-        }
-      }
-    });
+    $commentList.addEventListener("click", commentDeleteHandler);
   };
-
   const setArticleEvent = (postData) => {
-    const $article = $page.querySelector("#post-article");
-    $article.addEventListener("click", async (e) => {
+    const articleEventHandler = async (e) => {
       const $target = e.target.closest("button");
+      const { postId } = router.params();
       if ($target && $target.id === "post__actions__delete") {
         if (!confirm("정말 삭제하시겠습니까?")) return;
         try {
@@ -74,9 +100,10 @@ const Post = () => {
       } else if ($target && $target.id === "post__actions__edit") {
         $article.replaceWith(PostArticle.Edit(postData));
       }
-    });
-  };
+    };
 
+    $article.addEventListener("click", articleEventHandler);
+  };
   const fetchPostAndComment = async () => {
     const { data, success } = await getPostById(postId);
     if (success) {
@@ -95,34 +122,25 @@ const Post = () => {
         .replaceWith(
           parseElementFromString(CommentList({ data: data.comments }))
         );
-
       setCommentEvent();
     }
   };
 
+  const render = () => {
+    const $app = document.querySelector("#app");
+    const $page = parseElementFromString(pageString);
+
+    $page
+      .querySelector("app-header")
+      .addEventListener("click", headerClickHandler);
+    const $form = $page.querySelector("#post__comments__form");
+    $form.addEventListener("submit", formSubmitHandler);
+
+    $app.replaceWith($page);
+  };
+
+  render();
   fetchPostAndComment();
-
-  const $form = $page.querySelector("#post__comments__form");
-  $form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const $textarea = $form.querySelector("textarea");
-    const comment = $textarea.value.trim();
-    if (!comment) return;
-
-    try {
-      const responseData = await createComment(postId, comment);
-      if (responseData.code === 201) {
-        $textarea.value = "";
-        fetchPostAndComment();
-      }
-    } catch (err) {
-      if (err.response.status === 400) {
-        alert(err.response.data.message);
-      }
-    }
-  });
-
-  return $page;
 };
 
 export default Post;

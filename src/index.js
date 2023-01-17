@@ -1,7 +1,7 @@
-import "./styles/input.css";
+import "styles/input.css";
 
-import { Header } from "./components";
-import Router from "router";
+import router from "common/router";
+import Header from "common/components/Header";
 import { Home, NewPost, Post } from "pages";
 
 customElements.define("app-header", Header);
@@ -26,6 +26,4 @@ const routes = {
   "/posts/:postId": Post,
 };
 
-const router = new Router(routes);
-
-router.init();
+router.init({ routes });

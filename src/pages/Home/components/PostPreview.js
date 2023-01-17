@@ -1,4 +1,4 @@
-import parseElementFromString from "utils/parseElementFromString";
+import parseElementFromString from "common/utils/parseElementFromString";
 
 const PostPreview = ({
   postId,

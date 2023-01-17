@@ -49,4 +49,11 @@ class Header extends HTMLElement {
   }
 }
 
+export const headerClickHandler = (e) => {
+  const $target = e.target.closest("button");
+  if ($target && $target.id === "back-button") {
+    router.back();
+  }
+};
+
 export default Header;

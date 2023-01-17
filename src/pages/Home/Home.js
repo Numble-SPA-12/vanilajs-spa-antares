@@ -1,11 +1,12 @@
 "use strict";
 
-import { getPosts } from "apis/PostsAPI";
-import { PostPreview } from "components";
-import router from "router";
-import parseElementFromString from "utils/parseElementFromString";
+import { getPosts } from "common/apis/PostsAPI";
+import PostPreview from "./components/PostPreview";
+import router from "common/router";
+import parseElementFromString from "common/utils/parseElementFromString";
 
 const articleClickHandler = (e) => {
+  console.log(e.target);
   const $target = e.target.closest("article");
   if ($target) {
     const id = $target.dataset.postId;
