@@ -1,13 +1,13 @@
 import parseElementFromString from "common/utils/parseElementFromString";
 import Comment from "./Comment";
 
-const CommentList = ({ data }) => {
+const CommentList = (comments) => {
   const componentString = `
     <ul id="post__comments__list" class="flex flex-col gap-2">
-      ${data.map(Comment).join("")}
+      ${comments.map(Comment).join("")}
       ${
-        data.length === 0
-          ? `<p class="text-center text-gray-600">No comments yet</p>`
+        comments.length === 0
+          ? `<p class="text-center text-gray-500 my-6">No comments yet</p>`
           : ""
       }
     </ul>

@@ -1,3 +1,5 @@
+import parseElementFromString from "common/utils/parseElementFromString";
+
 const CommentUploader = () => {
   const componentString = `
     <form id="post__comments__form" class="">

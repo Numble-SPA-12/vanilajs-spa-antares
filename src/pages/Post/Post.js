@@ -6,11 +6,13 @@ import pageTemplate from "./constants/template";
 import fetchPostAndComment from "./utils/fetchPostAndComment";
 import PostArticle from "./components/PostArticle";
 import PostEditor from "./components/PostEditor";
+import CommentList from "./components/CommentList";
+import CommentUploader from "./components/CommentUploader";
 
 const Post = () => {
   let state = {
     post: null,
-    comments: null,
+    comments: [],
     mode: "view",
     isLoading: false,
   };
@@ -39,21 +41,21 @@ const Post = () => {
       $articlePlaceholder.replaceWith($postEditor);
     }
 
-    // const $commentListPlaceholder = $page.querySelector(
-    //   "#commentlist__placeholder"
-    // );
-    // if (state.isLoading) {
-    //   const $commentListSkeleton = CommentList.Loading();
-    //   $commentListPlaceholder.replaceWith($commentListSkeleton);
-    // } else {
-    //   const $commentList = CommentList(state.comments);
-    //   $commentListPlaceholder.replaceWith($commentList);
-    // }
+    const $commentListPlaceholder = $page.querySelector(
+      "#commentlist__placeholder"
+    );
+    if (state.isLoading) {
+      const $commentListSkeleton = CommentList.Loading();
+      $commentListPlaceholder.replaceWith($commentListSkeleton);
+    } else {
+      const $commentList = CommentList(state.comments);
+      $commentListPlaceholder.replaceWith($commentList);
+    }
 
-    // const $commentUploaderPlaceholder = $page.querySelector(
-    //   "#commentuploader__placeholder"
-    // );
-    // $commentUploaderPlaceholder.replaceWith(CommentUploader());
+    const $commentUploaderPlaceholder = $page.querySelector(
+      "#commentuploader__placeholder"
+    );
+    $commentUploaderPlaceholder.replaceWith(CommentUploader());
 
     $app.replaceChildren($page);
   };
