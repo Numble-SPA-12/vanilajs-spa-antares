@@ -1,4 +1,5 @@
 import { deletePost } from "common/apis/PostsAPI";
+import Links from "common/constants/Links";
 import router from "common/router";
 import parseDateTime from "common/utils/parseDateTime";
 import parseElementFromString from "common/utils/parseElementFromString";
@@ -43,7 +44,7 @@ const PostArticle = (
     try {
       const response = await deletePost(postId);
       console.log(response);
-      router.push("/posts");
+      router.push(Links.Home);
     } catch (err) {
       console.error(err);
       if (err.response.status === 400) {

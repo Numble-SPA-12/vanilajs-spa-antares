@@ -21,7 +21,6 @@ String.prototype.escape = function () {
 
 const routes = {
   "/": Home,
-  "/posts": Home,
   "/posts/new": NewPost,
   "/posts/:postId": Post,
 };

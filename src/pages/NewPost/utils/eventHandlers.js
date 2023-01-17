@@ -1,9 +1,10 @@
-import router from "common/router";
 import { createPost } from "common/apis/PostsAPI";
 import { getRandomPhoto } from "common/apis/UnsplashAPI";
+import Links from "common/constants/Links";
+import router from "common/router";
 import parseElementFromString from "common/utils/parseElementFromString";
 
-const imageUploaderClickHandler = async (e) => {
+export const imageUploaderClickHandler = async (e) => {
   const data = await getRandomPhoto();
   const $image = e.target.closest("#post__form__image");
 
@@ -14,7 +15,7 @@ const imageUploaderClickHandler = async (e) => {
   );
 };
 
-const formSubmitHandler = async (e) => {
+export const formSubmitHandler = async (e) => {
   e.preventDefault();
 
   const $form = e.target.closest("#post__form");
@@ -32,7 +33,7 @@ const formSubmitHandler = async (e) => {
   try {
     const responseData = await createPost(post);
     if (responseData.code === 201) {
-      router.push(`/posts/${responseData.data.postId}`);
+      router.push(Links.Post(responseData.data.postId));
     }
   } catch (err) {
     console.log(err);
@@ -44,12 +45,3 @@ const formSubmitHandler = async (e) => {
     $content.value = "";
   }
 };
-
-const setEventListeners = ($page) => {
-  const $form = $page.querySelector("#post__form");
-  const $image = $page.querySelector("#post__form__image");
-  $image.addEventListener("click", imageUploaderClickHandler);
-  $form.addEventListener("submit", formSubmitHandler);
-};
-
-export default setEventListeners;

@@ -1,8 +1,8 @@
 "use strict";
 
 import parseElementFromString from "common/utils/parseElementFromString";
+import PostForm from "./components/PostForm";
 import pageTemplate from "./constants/template";
-import setEventListeners from "./utils/setEventListeners";
 
 const NewPost = () => {
   let state = {
@@ -20,8 +20,10 @@ const NewPost = () => {
   const render = () => {
     const $app = document.querySelector("#app");
     const $page = parseElementFromString(pageTemplate);
-    // TODO : 로딩 처리
-    setEventListeners($page);
+
+    const $main = $page.querySelector("main");
+    $main.appendChild(PostForm(setState));
+
     $app.replaceChildren($page);
   };
 

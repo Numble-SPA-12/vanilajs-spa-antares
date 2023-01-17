@@ -1,15 +1,16 @@
 import router from "common/router";
+import Links from "common/constants/Links";
 
 const articleClickHandler = (e) => {
   const $target = e.target.closest("article");
   if ($target) {
     const id = $target.dataset.postId;
-    router.push(`/posts/${id}`);
+    router.push(Links.Post(id));
   }
 };
 
 const newPostClickHandler = (e) => {
-  router.push("/posts/new");
+  router.push(Links.NewPost);
 };
 
 const setEventListeners = ($page) => {
