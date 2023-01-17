@@ -15,7 +15,7 @@ const PostList = (posts) => {
   $list.id = "newyear-post__list";
   $list.classList.add("flex", "flex-col", "gap-4");
 
-  const postPreviews = posts.map((post) => PostPreview(post));
+  const postPreviews = posts.reverse().map((post) => PostPreview(post));
   $list.append(...postPreviews);
 
   $list.addEventListener("click", postClickHandler);

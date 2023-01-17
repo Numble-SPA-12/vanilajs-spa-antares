@@ -1,11 +1,20 @@
-const parseDateTime = (dateString) => {
+const parseDateTime = (
+  dateString,
+  {
+    year = undefined,
+    month = undefined,
+    day = undefined,
+    hour = undefined,
+    minute = undefined,
+  } = {}
+) => {
   const date = new Date(dateString);
   const options = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "numeric",
-    minute: "numeric",
+    year,
+    month,
+    day,
+    hour,
+    minute,
   };
   return date.toLocaleDateString("en-US", options);
 };

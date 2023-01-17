@@ -14,7 +14,7 @@ const PostEditor = (post, setState) => {
         <img src="${image.escape()}" class="h-full w-full object-cover aspect-[360/265] brightness-75" />
       </section>
       <section id="post__content" class="px-4 pt-4 flex flex-1 flex-col gap-4">
-        <input type="text" placeholder="Your Post Title Here..." value="${title.escape()}" class="w-full text-2xl font-bold text-black placeholder:text-gray-600 placeholder:text-2xl placeholder:font-bold focus:outline-none" ></input>
+        <input type="text" placeholder="Your Post Title Here..." value="${title.escape()}" class="w-full text-2xl font-bold text-black placeholder:text-gray-600 placeholder:text-2xl placeholder:font-bold focus:outline-none bg-transparent" ></input>
         <hr class="w-full" ></hr>
         <textarea placeholder="Your Post Content Here..." class="w-full text-black whitespace-pre-wrap flex-1 placeholder:text-gray-500 focus:outline-none resize-none border border-gray-300 p-2 rounded-sm" >${content.escape()}</textarea>
       </section>

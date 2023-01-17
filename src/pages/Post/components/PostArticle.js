@@ -17,7 +17,14 @@ const PostArticle = (
         <div id="post__content__meta" class="flex flex-col gap-2" >
           <h2 id="post__content__title" class="text-2xl font-bold break-all">${title.escape()}</h2>
           <time datetime="${createdAt}" class="text-sm text-gray-500" >${parseDateTime(
-    createdAt
+    createdAt,
+    {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    }
   )}</time>
         </div>
         <p class="text-gray-900 whitespace-pre-line break-words">${content.escape()}</p>
