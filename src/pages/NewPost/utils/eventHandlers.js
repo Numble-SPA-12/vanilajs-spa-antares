@@ -38,7 +38,7 @@ export const formSubmitHandler = async (e) => {
   } catch (err) {
     console.log(err);
     if (err.response.status === 400) {
-      alert("제목과 내용을 입력해주세요.");
+      alert(err.response.data.message);
     }
   } finally {
     $title.value = "";

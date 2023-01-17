@@ -1,7 +1,6 @@
 import parseElementFromString from "common/utils/parseElementFromString";
-
-const { updatePost } = require("common/apis/PostsAPI");
-const { getRandomPhoto } = require("common/apis/UnsplashAPI");
+import { updatePost } from "common/apis/PostsAPI";
+import { getRandomPhoto } from "common/apis/UnsplashAPI";
 
 const PostEditor = (post, setState) => {
   const { image, title, postId, content, createdAt, updatedAt } = post;
@@ -76,7 +75,9 @@ const PostEditor = (post, setState) => {
       }
     } catch (err) {
       console.error(err);
-      alert(err.response.data.message);
+      if (err.response.status === 400) {
+        alert(err.response.data.message);
+      }
     }
   });
 
