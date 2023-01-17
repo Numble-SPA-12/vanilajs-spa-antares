@@ -3,6 +3,8 @@
 import PostPreview from "./components/PostPreview";
 import parseElementFromString from "common/utils/parseElementFromString";
 import template from "./constants/template";
+import setEventListeners from "./utils/setEventListeners";
+import fetchPosts from "./utils/fetchPosts";
 
 const Home = async () => {
   let state = {
@@ -26,11 +28,10 @@ const Home = async () => {
     const $fragment = document.createDocumentFragment();
 
     if (state.isLoading) {
-      $fragment.append(
-        PostPreview.Loading,
-        PostPreview.Loading,
-        PostPreview.Loading
+      Array.from({ length: 3 }).forEach((_, i) =>
+        $fragment.append(PostPreview.Loading())
       );
+      console.dir($fragment);
     } else {
       const postPreviews = state.posts.map((post) => PostPreview(post));
       $fragment.append(...postPreviews);

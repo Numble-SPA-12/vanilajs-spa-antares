@@ -1,3 +1,5 @@
+import router from "common/router";
+
 const articleClickHandler = (e) => {
   const $target = e.target.closest("article");
   if ($target) {

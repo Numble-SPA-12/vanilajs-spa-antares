@@ -1,5 +1,7 @@
 "use strict";
 
+import router from "common/router";
+
 class Header extends HTMLElement {
   constructor() {
     super();

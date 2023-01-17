@@ -3,9 +3,9 @@
 import parseElementFromString from "common/utils/parseElementFromString";
 import router from "common/router";
 import { getPostById, deletePost } from "common/apis/PostsAPI";
-import PostArticle from "components/PostArticle";
-import CommentList from "components/CommentList";
-import CommentUploader from "components/CommentUploader";
+import PostArticle from "./components/PostArticle";
+import CommentList from "./components/CommentList";
+import CommentUploader from "./components/CommentUploader";
 import { createComment, deleteComment } from "common/apis/CommentsAPI";
 
 const headerClickHandler = (e) => {

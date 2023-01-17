@@ -44,6 +44,6 @@ const LoadingPostPreview = () => {
   return component;
 };
 
-PostPreview.Loading = LoadingPostPreview();
+PostPreview.Loading = LoadingPostPreview;
 
 export default PostPreview;
