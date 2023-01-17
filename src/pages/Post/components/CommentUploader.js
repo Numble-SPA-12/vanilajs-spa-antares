@@ -6,7 +6,8 @@ const CommentUploader = () => {
     </form>
   `;
 
-  return componentString;
+  const $commentUploader = parseElementFromString(componentString);
+  return $commentUploader;
 };
 
 export default CommentUploader;

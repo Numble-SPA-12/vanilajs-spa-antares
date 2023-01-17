@@ -1,3 +1,4 @@
+import parseElementFromString from "common/utils/parseElementFromString";
 import Comment from "./Comment";
 
 const CommentList = ({ data }) => {
@@ -12,7 +13,7 @@ const CommentList = ({ data }) => {
     </ul>
   `;
 
-  return componentString;
+  return parseElementFromString(componentString);
 };
 
 const CommentListSkeleton = () => {
@@ -28,9 +29,9 @@ const CommentListSkeleton = () => {
       </li>
     </ul>
   `;
-  return componentString;
+  return parseElementFromString(componentString);
 };
 
-CommentList.Loading = CommentListSkeleton();
+CommentList.Loading = CommentListSkeleton;
 
 export default CommentList;
