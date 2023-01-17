@@ -1,12 +1,12 @@
 import PostPreview from "./PostPreview";
-import router from "common/router";
 import Links from "common/constants/Links";
+import handleNewTabOpen from "common/utils/handleNewTabOpen";
 
 const postClickHandler = (e) => {
   const $target = e.target.closest("article");
   if ($target) {
     const id = $target.dataset.postId;
-    router.push(Links.Post(id));
+    handleNewTabOpen(Links.Post(id), e);
   }
 };
 

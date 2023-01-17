@@ -4,6 +4,7 @@ import parseElementFromString from "common/utils/parseElementFromString";
 import template from "./constants/template";
 import fetchPosts from "./utils/fetchPosts";
 import PostList from "./components/PostList";
+import Link from "common/components/Link";
 
 const Home = async () => {
   let state = {
@@ -23,16 +24,23 @@ const Home = async () => {
     const $app = document.querySelector("#app");
     const $page = parseElementFromString(template);
 
-    const $listPlaceholder = $page.querySelector(
-      "#newyear-post__list__placeholder"
+    const $fragment = document.createDocumentFragment();
+    $fragment.append(
+      Link({
+        href: "/posts/new",
+        label: "New Post",
+        className:
+          "w-full py-3 rounded-lg bg-black text-white font-semibold text-lg mb-4 flex justify-center",
+      })
     );
     if (state.isLoading) {
-      $listPlaceholder.replaceChildren(PostList.Loading());
+      $fragment.append(PostList.Loading());
     } else {
-      $listPlaceholder.replaceChildren(PostList(state.posts));
+      $fragment.append(PostList(state.posts));
     }
+    const $main = $page.querySelector("main");
+    $main.replaceChildren($fragment);
 
-    // setEventListeners($page);
     $app.replaceChildren($page);
   };
 
