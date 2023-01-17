@@ -1,7 +1,6 @@
 import { createComment } from "common/apis/CommentsAPI";
 import router from "common/router";
 import parseElementFromString from "common/utils/parseElementFromString";
-import fetchPostAndComment from "../utils/fetchPostAndComment";
 
 const getFormSubmitHandler = (setState) => async (e) => {
   e.preventDefault();
@@ -14,7 +13,10 @@ const getFormSubmitHandler = (setState) => async (e) => {
     const responseData = await createComment(postId, comment);
     if (responseData.code === 201) {
       $textarea.value = "";
-      fetchPostAndComment(setState);
+      setState((prevState) => ({
+        ...prevState,
+        comments: [...prevState.comments, responseData.data],
+      }));
     }
   } catch (err) {
     if (err.response.status === 400) {

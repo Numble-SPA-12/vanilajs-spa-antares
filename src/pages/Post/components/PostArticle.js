@@ -43,8 +43,9 @@ const PostArticle = (
 
     try {
       const response = await deletePost(postId);
-      console.log(response);
-      router.push(Links.Home);
+      if (response.code === 200) {
+        router.push(Links.Home);
+      }
     } catch (err) {
       console.error(err);
       if (err.response.status === 400) {

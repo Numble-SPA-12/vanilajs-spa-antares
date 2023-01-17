@@ -1,7 +1,6 @@
 import parseElementFromString from "common/utils/parseElementFromString";
 
 const Comment = (data) => {
-  console.log(data);
   const { commentId, content, postId, createdAt, updatedAt } = data;
 
   const commentTemplate = `

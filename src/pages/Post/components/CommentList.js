@@ -1,6 +1,5 @@
 import { deleteComment } from "common/apis/CommentsAPI";
 import parseElementFromString from "common/utils/parseElementFromString";
-import fetchPostAndComment from "../utils/fetchPostAndComment";
 import Comment from "./Comment";
 
 const CommentList = (comments, setState) => {
@@ -31,7 +30,12 @@ const CommentList = (comments, setState) => {
       try {
         const { code } = await deleteComment($target.dataset.commentId);
         if (code === 200) {
-          fetchPostAndComment(setState);
+          setState((prevState) => ({
+            ...prevState,
+            comments: prevState.comments.filter(
+              (comment) => comment.commentId !== $target.dataset.commentId
+            ),
+          }));
         }
       } catch (err) {
         console.error(err);

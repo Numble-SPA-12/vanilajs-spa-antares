@@ -17,8 +17,13 @@ const Post = () => {
     isLoading: false,
   };
 
-  const setState = (newState) => {
-    state = { ...state, ...newState };
+  const setState = (param) => {
+    if (typeof param === "function") {
+      state = param(state);
+    } else {
+      state = { ...state, ...param };
+    }
+
     render();
   };
 
@@ -28,7 +33,7 @@ const Post = () => {
 
     const $articlePlaceholder = $page.querySelector("#article__placeholder");
     if (state.mode === "view") {
-      if (state.isLoading || !state.post) {
+      if (!state.post || (!state.post && state.isLoading)) {
         const $postArticleSkeleton = PostArticle.Loading();
         $articlePlaceholder.replaceWith($postArticleSkeleton);
       } else {
