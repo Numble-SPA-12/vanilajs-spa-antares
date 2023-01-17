@@ -1,6 +1,9 @@
 import { getPostById } from "common/apis/PostsAPI";
+import router from "common/router";
 
-const fetchPostAndComment = async (postId, setState) => {
+const fetchPostAndComment = async (setState) => {
+  const { postId } = router.params();
+
   setState({
     isLoading: true,
   });

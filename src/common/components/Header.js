@@ -1,6 +1,7 @@
 "use strict";
 
 import router from "common/router";
+import parseElementFromString from "common/utils/parseElementFromString";
 
 class Header extends HTMLElement {
   constructor() {
@@ -11,33 +12,47 @@ class Header extends HTMLElement {
     return ["type"];
   }
 
+  mainTemlate = `
+    <header class="flex fixed z-20 bg-white top-0 items-center justify-start w-full gap-2 px-4 border-b border-gray-200 h-14">
+        <h1 class="font-bold text-xl">HPNY 2023</h1>
+        <div class="flex-1"></div>
+    </header>
+  `;
+
+  subTemplate = `
+    <header class="flex fixed z-20 bg-white top-0 items-center justify-start w-full gap-2 px-4 border-b border-gray-200 h-14">
+      <button id="back-button" class="w-10 h-10">
+        <i class="bi bi-chevron-left text-lg"></i>
+      </button>
+      <h1 class="font-bold text-xl">HPNY 2023</h1>
+      <div class="flex-1"></div>
+    </header>
+  `;
+
+  placeholderTemplate = `
+    <div class="h-14 w-full bg-gray-50"></div>
+  `;
+
   render(el) {
     const headerType = el.getAttribute("type");
     // @TODO : Prev Icon 위치 조정
-    // @TODO : Prev Icon 클릭 시 이전 페이지로 이동
+
+    const $fragment = document.createDocumentFragment();
+
     switch (headerType) {
       case "main":
-        el.innerHTML = `
-          <header class="flex fixed z-20 bg-white top-0 items-center justify-start w-full gap-2 px-4 border-b border-gray-200 h-14">
-              <h1 class="font-bold text-xl">HPNY 2023</h1>
-              <div class="flex-1"></div>
-          </header>
-          <div class="h-14 w-full bg-gray-50"></div>
-        `;
+        $fragment.append(parseElementFromString(this.mainTemlate));
         break;
       case "sub":
-        el.innerHTML = `
-          <header class="flex fixed z-20 bg-white top-0 items-center justify-start w-full gap-2 px-4 border-b border-gray-200 h-14">
-              <button id="back-button" class="w-10 h-10">
-                <i class="bi bi-chevron-left text-lg"></i>
-              </button>
-              <h1 class="font-bold text-xl">HPNY 2023</h1>
-              <div class="flex-1"></div>
-          </header>
-          <div class="h-14 w-full bg-gray-50"></div>
-        `;
+        const $header = parseElementFromString(this.subTemplate);
+        const $backButton = $header.querySelector("#back-button");
+        $backButton.addEventListener("click", this.backButtonClickHandler);
+        $fragment.append($header);
         break;
     }
+    $fragment.append(parseElementFromString(this.placeholderTemplate));
+
+    el.append($fragment);
   }
 
   /**
@@ -49,13 +64,13 @@ class Header extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     this.render(this);
   }
-}
 
-export const headerClickHandler = (e) => {
-  const $target = e.target.closest("button");
-  if ($target && $target.id === "back-button") {
-    router.back();
+  backButtonClickHandler(e) {
+    const $target = e.target.closest("button");
+    if ($target && $target.id === "back-button") {
+      router.back();
+    }
   }
-};
+}
 
 export default Header;

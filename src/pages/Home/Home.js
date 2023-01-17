@@ -31,7 +31,6 @@ const Home = async () => {
       Array.from({ length: 3 }).forEach((_, i) =>
         $fragment.append(PostPreview.Loading())
       );
-      console.dir($fragment);
     } else {
       const postPreviews = state.posts.map((post) => PostPreview(post));
       $fragment.append(...postPreviews);

@@ -1,12 +1,10 @@
 import router from "common/router";
 import { createPost } from "common/apis/PostsAPI";
 import { getRandomPhoto } from "common/apis/UnsplashAPI";
-import { headerClickHandler } from "common/components/Header";
 import parseElementFromString from "common/utils/parseElementFromString";
 
 const imageUploaderClickHandler = async (e) => {
   const data = await getRandomPhoto();
-
   const $image = e.target.closest("#post__form__image");
 
   $image.replaceChildren(
@@ -48,9 +46,6 @@ const formSubmitHandler = async (e) => {
 };
 
 const setEventListeners = ($page) => {
-  $page
-    .querySelector("app-header")
-    .addEventListener("click", headerClickHandler);
   const $form = $page.querySelector("#post__form");
   const $image = $page.querySelector("#post__form__image");
   $image.addEventListener("click", imageUploaderClickHandler);

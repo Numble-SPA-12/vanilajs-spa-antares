@@ -48,21 +48,21 @@ const Post = () => {
       const $commentListSkeleton = CommentList.Loading();
       $commentListPlaceholder.replaceWith($commentListSkeleton);
     } else {
-      const $commentList = CommentList(state.comments);
+      const $commentList = CommentList(state.comments, setState);
       $commentListPlaceholder.replaceWith($commentList);
     }
 
     const $commentUploaderPlaceholder = $page.querySelector(
       "#commentuploader__placeholder"
     );
-    $commentUploaderPlaceholder.replaceWith(CommentUploader());
+    const $commentUploader = CommentUploader(setState);
+    $commentUploaderPlaceholder.replaceWith($commentUploader);
 
     $app.replaceChildren($page);
   };
 
   render();
-  const { postId } = router.params();
-  fetchPostAndComment(postId, setState);
+  fetchPostAndComment(setState);
 };
 
 export default Post;
