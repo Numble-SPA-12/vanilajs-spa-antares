@@ -1,7 +1,8 @@
-import "./styles/input.css";
+import "styles/input.css";
 
-import { Header } from "./components";
-import router from "router";
+import router from "common/router";
+import Header from "common/components/Header";
+import { Home, NewPost, Post } from "pages";
 
 customElements.define("app-header", Header);
 
@@ -18,4 +19,10 @@ String.prototype.escape = function () {
   });
 };
 
-router.init();
+const routes = {
+  "/": Home,
+  "/posts/new": NewPost,
+  "/posts/:postId": Post,
+};
+
+router.init({ routes });

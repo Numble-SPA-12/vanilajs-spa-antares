@@ -1,11 +1,9 @@
 "use strict";
 
-import { Home, NotFound, NewPost, Post } from "pages";
+import { NotFound } from "pages";
 
 class Router {
   constructor() {
-    this.$appRoot = document.getElementById("app");
-
     // bind the event handlers to the instance
     this.init = this.init.bind(this);
     this.back = this.back.bind(this);
@@ -13,15 +11,7 @@ class Router {
     this.replace = this.replace.bind(this);
   }
 
-  /**
-   * @type {Object} - key-value pairs of routes
-   */
-  routes = {
-    "/": Home,
-    "/posts": Home,
-    "/posts/new": NewPost,
-    "/posts/:postId": Post,
-  };
+  routes = {};
 
   /**
    * @type {Object}
@@ -63,8 +53,6 @@ class Router {
     }
   }
 
-  $appRoot;
-
   async #render(path) {
     const _path = path ?? window.location.pathname;
 
@@ -96,18 +84,19 @@ class Router {
 
       const page = matchingPage ?? NotFound;
 
-      this.$appRoot.replaceChildren(await page());
+      page();
     } catch (err) {
       console.log(err);
     }
   }
 
-  init() {
+  init({ routes }) {
+    this.routes = routes;
+
     this.#render();
     window.addEventListener("popstate", () => {
       this.#render();
     });
-
     window.addEventListener("DOMContentLoaded", () => {
       this.#render();
     });
