@@ -9,7 +9,7 @@ export const getEditButtonClickHandler = (setState) => (e) => {
   }));
 };
 
-export const deleteButtonEventHandler = (postId) => async (e) => {
+export const getDeleteButtonEventHandler = (postId) => async (e) => {
   if (!confirm("정말로 삭제하시겠어요?")) return;
 
   try {

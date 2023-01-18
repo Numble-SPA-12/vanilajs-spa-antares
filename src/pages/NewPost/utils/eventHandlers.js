@@ -24,10 +24,14 @@ export const formSubmitHandler = async (e) => {
   const $content = $form.querySelector("textarea");
   const $image = $form.querySelector("img");
 
+  if (!$title.value) return alert("제목을 입력해주세요.");
+  if (!$content.value) return alert("내용을 입력해주세요.");
+  if (!$image?.src) return alert("이미지를 업로드해주세요.");
+
   const post = {
     title: $title.value,
     content: $content.value,
-    image: $image ? $image.src : "",
+    image: $image.src,
   };
 
   try {

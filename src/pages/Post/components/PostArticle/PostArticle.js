@@ -1,8 +1,10 @@
-import router from "common/router";
 import parseDateTime from "common/utils/parseDateTime";
 import parseElementFromString from "common/utils/parseElementFromString";
 import PostArticleSkeleton from "./PostArticleSkeleton";
-import { deleteButtonEventHandler, getEditButtonClickHandler } from "./utils";
+import {
+  getDeleteButtonEventHandler,
+  getEditButtonClickHandler,
+} from "./utils";
 
 const postArticleTemplate = (post) => `
     <article id="post-article" class="flex flex-col border-b border-gray-400">
@@ -34,14 +36,15 @@ const postArticleTemplate = (post) => `
   `;
 
 const PostArticle = (post, setState) => {
-  const { postId } = router.query;
-
   const $postArticle = parseElementFromString(postArticleTemplate(post));
   const $editButton = $postArticle.querySelector("#post__actions__edit");
   const $deleteButton = $postArticle.querySelector("#post__actions__delete");
 
   $editButton.addEventListener("click", getEditButtonClickHandler(setState));
-  $deleteButton.addEventListener("click", deleteButtonEventHandler(postId));
+  $deleteButton.addEventListener(
+    "click",
+    getDeleteButtonEventHandler(post.postId)
+  );
 
   return $postArticle;
 };
