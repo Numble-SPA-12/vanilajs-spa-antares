@@ -2,7 +2,14 @@
 
 import parseElementFromString from "common/utils/parseElementFromString";
 import PostForm from "./components/PostForm";
-import pageTemplate from "./constants/template";
+
+const pageTemplate = `
+    <div class="min-h-screen flex flex-col max-w-[640px] mx-auto">
+      <app-header type="sub"></app-header>
+      <main class="flex-1 flex flex-col bg-gray-50">
+      </main>
+    </div> 
+`;
 
 const NewPost = () => {
   let state = {

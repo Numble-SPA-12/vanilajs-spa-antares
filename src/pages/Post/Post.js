@@ -1,13 +1,25 @@
 "use strict";
 
 import parseElementFromString from "common/utils/parseElementFromString";
-import router from "common/router";
-import pageTemplate from "./constants/template";
 import fetchPostAndComment from "./utils/fetchPostAndComment";
 import PostArticle from "./components/PostArticle";
 import PostEditor from "./components/PostEditor";
 import CommentList from "./components/CommentList";
 import CommentUploader from "./components/CommentUploader";
+
+const pageTemplate = `
+    <div class="min-h-screen flex flex-col max-w-[640px] mx-auto">
+      <app-header type="sub"></app-header>
+      <main id="post-container" class="flex-1 flex flex-col">
+        <div id="article__placeholder"></div>
+        <aside id="post__comments" class="p-4 flex flex-col gap-4">
+          <h2 id="post__comments__title" class="text-lg font-semibold">Comments</h2>
+          <div id="commentlist__placeholder"></div>
+          <div id="commentuploader__placeholder"></div>
+        </aside>
+      </main>
+    </div> 
+  `;
 
 const Post = () => {
   let state = {
@@ -50,11 +62,11 @@ const Post = () => {
       "#commentlist__placeholder"
     );
     if (state.isLoading) {
-      const $commentListSkeleton = CommentList.Loading();
-      $commentListPlaceholder.replaceWith($commentListSkeleton);
+      $commentListPlaceholder.replaceWith(CommentList.Loading());
     } else {
-      const $commentList = CommentList(state.comments, setState);
-      $commentListPlaceholder.replaceWith($commentList);
+      $commentListPlaceholder.replaceWith(
+        CommentList(state.comments, setState)
+      );
     }
 
     const $commentUploaderPlaceholder = $page.querySelector(

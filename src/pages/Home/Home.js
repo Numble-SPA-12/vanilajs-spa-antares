@@ -1,10 +1,17 @@
 "use strict";
 
 import parseElementFromString from "common/utils/parseElementFromString";
-import template from "./constants/template";
 import fetchPosts from "./utils/fetchPosts";
 import PostList from "./components/PostList";
-import Link from "common/components/Link";
+import NewPostLink from "./components/NewPostLink";
+
+const pageTemplate = `
+    <div class="flex flex-col justify-start min-h-screen max-w-[640px] mx-auto" > 
+      <app-header type="main"></app-header>
+      <main class="flex-1 px-4 pt-4 pb-8 bg-gray-50">
+      </main>
+    </div> 
+  `;
 
 const Home = async () => {
   let state = {
@@ -22,17 +29,10 @@ const Home = async () => {
 
   const render = () => {
     const $app = document.querySelector("#app");
-    const $page = parseElementFromString(template);
+    const $page = parseElementFromString(pageTemplate);
 
     const $fragment = document.createDocumentFragment();
-    $fragment.append(
-      Link({
-        href: "/posts/new",
-        label: "New Post",
-        className:
-          "w-full py-3 rounded-lg bg-black text-white font-semibold text-lg mb-4 flex justify-center",
-      })
-    );
+    $fragment.append(NewPostLink());
     if (state.isLoading) {
       $fragment.append(PostList.Loading());
     } else {
