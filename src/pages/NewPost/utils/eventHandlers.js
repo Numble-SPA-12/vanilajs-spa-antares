@@ -15,7 +15,7 @@ export const imageUploaderClickHandler = async (e) => {
   );
 };
 
-export const formSubmitHandler = async (e) => {
+export const getFormSubmitHandler = (setState) => async (e) => {
   e.preventDefault();
 
   const $form = e.target.closest("#post__form");
@@ -34,6 +34,10 @@ export const formSubmitHandler = async (e) => {
     image: $image.src,
   };
 
+  setState({
+    isLoading: true,
+  });
+
   try {
     const responseData = await createPost(post);
     if (responseData.code === 201) {
@@ -45,7 +49,8 @@ export const formSubmitHandler = async (e) => {
       alert(err.response.data.message);
     }
   } finally {
-    $title.value = "";
-    $content.value = "";
+    setState({
+      isLoading: false,
+    });
   }
 };

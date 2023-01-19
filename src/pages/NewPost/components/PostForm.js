@@ -1,5 +1,5 @@
 import {
-  formSubmitHandler,
+  getFormSubmitHandler,
   imageUploaderClickHandler,
 } from "../utils/eventHandlers";
 import parseElementFromString from "common/utils/parseElementFromString";
@@ -32,7 +32,7 @@ const PostForm = (setState) => {
   `;
 
   const $form = parseElementFromString(template);
-  $form.addEventListener("submit", formSubmitHandler);
+  $form.addEventListener("submit", getFormSubmitHandler(setState));
   const $imageUploader = $form.querySelector("#post__form__image");
   $imageUploader.addEventListener("click", imageUploaderClickHandler);
 
