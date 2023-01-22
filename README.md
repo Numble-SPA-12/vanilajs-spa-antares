@@ -1,30 +1,11 @@
-# vanilajs-spa-antares
+# Numble 바닐라JS로 SPA 구현하기 챌린지
 
-서혁준의 바닐라JS SPA 챌린지
+## 설명
 
-## 진행 기간
-
-2022.01.06 ~ 2022.01.19
-
-## 체크리스트
-
-- [x] 글 전부 불러오기
-
-- [x] id에 해당하는 글 불러오기
-
-- [x] 글 작성
-
-- [x] 글 수정
-
-- [x] 글 삭제
-
-- [x] 댓글 작성
-
-- [x] 댓글 삭제
-
-- [x] 랜덤 이미지 불러오기
-
-- [x] 수정 시 이미지까지 수정
+- [챌린지 링크](https://www.numble.it/501cc258-649f-4c73-b64b-bb4fea000640)
+- [회고록](https://velog.io/@antares5757/Numble-VanilaJS-SPA-챌린지-회고#총평)
+- [배포 사이트](http://numble-spa-challenge.s3-website.ap-northeast-2.amazonaws.com)
+- 기간 : 23.01.06 ~ 23.01.19
 
 ## How to start
 
